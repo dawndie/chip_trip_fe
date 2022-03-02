@@ -117,9 +117,9 @@ import useAuthenForm from "@/composables/useAuthenForm";
 
 import { COUNTRIES, COUNTRY_PHONE_CODE } from "@/consts/sharedConsts";
 
-import authApi from '@/api/services/authApi.js'
-import ApiHandler from '@/helpers/ApiHandler'
-import ResponseHelper from '@/helpers/ResponseHelper'
+import authApi from "@/api/services/authApi.js";
+import ApiHandler from "@/helpers/ApiHandler";
+import ResponseHelper from "@/helpers/ResponseHelper";
 
 export default {
   setup() {
@@ -145,43 +145,43 @@ export default {
 
     const signUp = async () => {
       const reqBody = {
-        "name": first_name.value + last_name.value,
-        "email": email.value,
-        "password": password.value,
-        "password_confirmation": password.value,
-        "phone": phoneNumber.number,
-      }
+        name: first_name.value + last_name.value,
+        email: email.value,
+        password: password.value,
+        password_confirmation: password.value,
+        phone: phoneNumber.number,
+      };
 
       const handler = new ApiHandler()
-                          .setData(reqBody)
-                          .setOnResponse(rawData => {
-                            const data = new ResponseHelper(rawData)
-                            
-                            if (data.isSuccess()) {
-                              ElNotification({
-                                title: "Signed up successfully!",
-                                message: "Please log in to continue",
-                                type: "success",
-                              });
+        .setData(reqBody)
+        .setOnResponse((rawData) => {
+          const data = new ResponseHelper(rawData);
 
-                              router.push({
-                                name: "Login"
-                              });
-                            } else {
-                              ElNotification({
-                                title: "Can't sign up",
-                                message: data.error,
-                                type: "error",
-                              });
-                            }
-                          })
-                          .setOnFinally(() => {})
-      
+          if (data.isSuccess()) {
+            ElNotification({
+              title: "Signed up successfully!",
+              message: "Please log in to continue",
+              type: "success",
+            });
+
+            router.push({
+              name: "Login",
+            });
+          } else {
+            ElNotification({
+              title: "Can't sign up",
+              message: data.error,
+              type: "error",
+            });
+          }
+        })
+        .setOnFinally(() => {});
+
       const onRequest = async () => {
-        return authApi.postSignUp(handler.data)
-      }
+        return authApi.postSignUp(handler.data);
+      };
 
-      await handler.setOnRequest(onRequest).execute()
+      await handler.setOnRequest(onRequest).execute();
     };
 
     const notValidForm = computed(() => {
