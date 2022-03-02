@@ -1,0 +1,244 @@
+@import "../../consts.scss";
+
+.navbar-container {
+  position: fixed;
+  top: 0;
+  padding: 10px 0;
+  width: 100%;
+  border-bottom: 1px solid $lighter;
+  background: white;
+  z-index: 11;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+
+  &--logo {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &--search {
+    max-width: 90%;
+
+    @media screen and (min-width: $lg) {
+      max-width: 50%;
+    }
+  }
+
+  &--info {
+    margin-left: auto;
+  }
+
+  &--link {
+    margin: 0 15px;
+    font-size: 0.9em;
+  }
+
+  .el-input {
+    --el-input-icon-color: $secondary;
+    --el-input-placeholder-color: $secondary;
+  }
+
+  .el-date-editor .el-range__icon {
+    color: $secondary;
+  }
+
+  .el-date-editor .el-range-input::placeholder {
+    color: $secondary;
+  }
+}
+
+.searchbar {
+  display: flex;
+  box-shadow: 1px 1px 4px $shadow;
+  border-radius: $border-radius;
+  padding: 4px 15px;
+
+  input,
+  .el-date-editor {
+    border: none;
+  }
+
+  &--datepicker {
+    min-width: 200px;
+  }
+}
+
+.guest-picker {
+  display: flex;
+  align-items: center;
+}
+
+.guest-picker-btn {
+  cursor: pointer;
+  min-width: 115px;
+  display: flex;
+  align-items: center;
+  color: $secondary;
+  font-size: 0.9em;
+}
+
+.guest-picker-dialog {
+  position: absolute;
+  top: 70px;
+  padding: 12px 15px;
+  background: white;
+  z-index: 99;
+
+  &--input {
+    margin-bottom: 10px;
+  }
+
+  .el-input-number__decrease:hover,
+  .el-input-number__increase:hover {
+    color: $highlight;
+  }
+}
+
+.setting-picker--mobile {
+  position: relative;
+}
+
+.setting-picker-btn {
+  border-radius: 2rem;
+  background: $lighter;
+  border: 0.3125rem solid transparent;
+  font-size: 0.875rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.setting-picker-dialog {
+  padding-top: calc(12px + 0.5em);
+  right: 35px;
+
+  .picker-col-1 {
+    min-width: 170px;
+    margin-right: 0.5em;
+  }
+
+  .picker-col-2 {
+    min-width: 250px;
+    margin-left: 0.5em;
+  }
+
+  &--mobile {
+    top: 50px;
+    left: 0px;
+    right: -150px;
+    flex-direction: column;
+
+    .picker-col-1,
+    .picker-col-2 {
+      margin: 0;
+    }
+
+    .picker-col-2 {
+      margin-top: 0.5em;
+    }
+  }
+}
+
+.mask {
+  position: fixed;
+  background: $shadow;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 19;
+}
+
+.sidebar {
+  position: fixed;
+  width: 17rem;
+  bottom: 0;
+  text-align: left;
+  top: 0;
+  z-index: 99;
+  overflow-y: auto;
+  background: white;
+  left: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1.25rem;
+  display: flex;
+
+  a {
+    margin-bottom: 1.25em;
+  }
+}
+
+.menu-icon {
+  font-size: 1.5em;
+  margin-left: auto;
+}
+
+.logged-member-picker {
+  .setting-picker-btn {
+    padding: 0 5px;
+    min-height: 2em;
+  }
+
+  .setting-picker-dialog {
+    right: initial;
+    padding: 0;
+    min-width: 220px;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  li {
+    position: relative;
+    border-bottom: 0.5px solid $light;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      p {
+        color: $highlight;
+      }
+
+      &::before {
+        height: 100%;
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 0;
+      background: linear-gradient(270deg, #f68a39, #f65e39);
+      border-radius: 1px;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      transition: all 0.2s;
+    }
+  }
+
+  &--item {
+    text-decoration: none;
+    padding: 15px 25px;
+    color: $text;
+    margin-bottom: 0 !important;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

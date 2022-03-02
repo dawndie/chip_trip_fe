@@ -1,0 +1,22 @@
+.authen-form {
+  padding: 2rem;
+  background-color: white;
+  margin-top: -6rem;
+
+  @media screen and (max-width: $sm) {
+    margin-top: 3rem;
+  }
+
+  &--input {
+    margin-top: 1em;
+
+    div {
+      margin-top: 0.5em;
+    }
+  }
+
+  .el-select .el-input__inner {
+    padding-left: 15px;
+    padding-bottom: 5px;
+  }
+}
