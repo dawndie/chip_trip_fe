@@ -5,43 +5,46 @@ export const BREAKPOINTS = {
   xl: 1920,
 };
 
-export const BANNER_FILENAMES = ["banner-01.jpeg", "banner-02.jpeg"];
+export const BANNER_FILENAMES = [
+  // "banner-01.jpeg",
+  "banner-02.jpeg",
+];
 
 export const INTERESTING_PLACES = [
   {
     slug: "ha-noi",
     name: "hanoi",
     img: "hanoi.png",
-    link: "hanoi"
+    link: "hanoi",
   },
   {
     slug: "tp-hcm",
     name: "tphcm",
     img: "tphcm.png",
-    link: "hcm"
+    link: "hcm",
   },
   {
     slug: "da-lat",
     name: "dalat",
     img: "dalat.png",
-    link: "dalat"
+    link: "dalat",
   },
   {
     slug: "da-nang",
     name: "danang",
     img: "danang.png",
-    link: "danang"
+    link: "danang",
   },
   {
     slug: "hoi-an",
     name: "hoian",
     img: "hoian.png",
-    link: "hoian"
+    link: "hoian",
   },
   {
     slug: "vung-tau",
     name: "vungtau",
     img: "vungtau.png",
-    link: "vungtau"
+    link: "vungtau",
   },
 ];

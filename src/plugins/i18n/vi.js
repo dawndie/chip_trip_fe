@@ -29,7 +29,7 @@ export default {
       homestay: "Homestay",
       motel: "Motel",
       villa: "Villa",
-      penhouse: "Penhouse"
+      penhouse: "Penhouse",
     },
     currency: {
       VND: "đ",
@@ -50,7 +50,7 @@ export default {
       baby_warning: "Dưới 2 tuổi",
     },
     footer: {
-      info1: "Bài tập cho môn học 2122I_INT3139, viết bởi trannguyen61",
+      info1: "Đồ án tốt nghiệp của Võ Lương Bằng",
     },
     options: {
       easy_cancel: "Hủy phòng linh hoạt",
@@ -73,7 +73,7 @@ export default {
       "vehicle-for-lease": "Cho thuê phương tiện",
       shopping: "Mua sắm và ăn uống",
       cafe: "Quán cà phê",
-      bar: "Bar"
+      bar: "Bar",
     },
     signout: "Đăng xuất",
     my_book: "Đặt chỗ của tôi",
@@ -86,7 +86,7 @@ export default {
     bookmark: "Yêu thích",
     rmv_bookmark: "Bỏ yêu thích",
     recommend: "Phòng gợi ý",
-    no_review: "Chưa có đánh giá cho phòng này"
+    no_review: "Chưa có đánh giá cho phòng này",
   },
   places: {
     hanoi: "Hà Nội",
@@ -98,13 +98,13 @@ export default {
   },
   pages: {
     home: {
-      greetings: "Chào mừng đến với Luxstay!",
+      greetings: "Chào mừng đến với Chiptrip!",
       greetings_info_1:
-        "Đặt chỗ ở, homestay, cho thuê xe, trải nghiệm và nhiều hơn nữa trên Luxstay",
+        "Đặt chỗ ở, homestay, cho thuê xe, trải nghiệm và nhiều hơn nữa trên Chiptrip",
       greetings_info_2: "để trải nghiệm!",
       places: "Địa điểm nổi bật",
       places_info:
-        "Cùng Luxstay bắt đầu chuyến hành trình chinh phục thế giới của bạn",
+        "Cùng Chiptrip bắt đầu chuyến hành trình chinh phục thế giới của bạn",
     },
     search: {
       places:
@@ -115,7 +115,8 @@ export default {
       go_to_map: "Xem bản đồ",
       other: "Khác",
       amenity: "Tiện nghi chỗ ở",
-      amenity_description: "Giới thiệu về các tiện nghi và dịch vụ tại nơi lưu trú",      
+      amenity_description:
+        "Giới thiệu về các tiện nghi và dịch vụ tại nơi lưu trú",
       facility: "Tiện ích",
       kitchen_facility: "Tiện ích nhà bếp",
       entertainment: "Giải trí",
@@ -133,20 +134,22 @@ export default {
       availability_description: "Giá có thể tăng vào cuối tuần hoặc ngày lễ",
       repay_rules: "Nội quy và chính sách về chỗ ở",
       cancel_rules: "Chính sách hủy phòng",
-      repay_rules_description: "Miễn phí hủy phòng trong vòng 48h sau khi đặt phòng thành công và trước 5 ngày so với thời gian check-in. Sau đó, hủy phòng trước 5 ngày so với thời gian check-in, được hoàn lại 100% tổng số tiền đã trả (trừ phí dịch vụ).",
+      repay_rules_description:
+        "Miễn phí hủy phòng trong vòng 48h sau khi đặt phòng thành công và trước 5 ngày so với thời gian check-in. Sau đó, hủy phòng trước 5 ngày so với thời gian check-in, được hoàn lại 100% tổng số tiền đã trả (trừ phí dịch vụ).",
       rules: {
         book_success: "Đặt phòng thành công",
         repay_100: "Hoàn tiền 100%",
         after_48: "Sau 48h",
         repay_100_no_service: "Hoàn tiền 100% (trừ phí dịch vụ)",
         "5_day_to_checkin": "5 ngày trước check-in",
-        repay_50: "Hoàn 50% (trừ phí đêm đầu tiên, phí dịch vụ và các phí kèm theo)",
+        repay_50:
+          "Hoàn 50% (trừ phí đêm đầu tiên, phí dịch vụ và các phí kèm theo)",
         checkin: "Check-in",
         special_rules: "Luật lệ riêng",
         smoking: "Hút thuốc",
         pet: "Thú nuôi",
         cooking: "Nấu nướng",
-        party: "Tổ chức tiệc"
+        party: "Tổ chức tiệc",
       },
       map: "Bản đồ",
       price_a_night: "Giá thuê",
@@ -162,7 +165,7 @@ export default {
       post_review: "Đăng bình luận",
       apply_coupon: "Áp dụng",
       coupon: "Mã giảm giá",
-      discount: "Giảm giá"
+      discount: "Giảm giá",
     },
     book: {
       book_info: "Thông tin đặt chỗ",
@@ -171,7 +174,8 @@ export default {
       checkin: "Nhận phòng",
       checkout: "Trả phòng",
       responsibility: "Trách nhiệm vật chất",
-      all_responsibility: "Khách hàng chịu mọi trách nhiệm thiệt hại về tài sản đã gây ra tại chỗ ở trong thời gian lưu trú.",
+      all_responsibility:
+        "Khách hàng chịu mọi trách nhiệm thiệt hại về tài sản đã gây ra tại chỗ ở trong thời gian lưu trú.",
       rules: "Nội quy chỗ ở",
       making_noise_rule: "Avoid making noises after 10 pm\n",
       guest_info: "Thông tin của bạn",
@@ -182,20 +186,26 @@ export default {
       email: "Email",
       example: "VD",
       country: "Quốc gia cư trú",
-      country_notice: "Nội dung này sẽ được sử dụng cho vấn đề pháp lý và thuế.",
-      book_detail: "Chi tiết đặt chỗ"
+      country_notice:
+        "Nội dung này sẽ được sử dụng cho vấn đề pháp lý và thuế.",
+      book_detail: "Chi tiết đặt chỗ",
     },
     authen: {
-      welcome: "Đăng ký thành viên Luxstay - Tích điểm thưởng và nhận ưu đãi",
-      detail_welcome: "Nhanh chóng, tiện lợi và an toàn. Đăng ký liền tay, rinh ngay quyền lợi.",
+      welcome: "Đăng ký thành viên Chiptrip - Đặt phòng với giá ưu đãi",
+      detail_welcome:
+        "Nhanh chóng, tiện lợi và an toàn. Đăng ký liền tay, rinh ngay quyền lợi.",
       detail_01: "Tích điểm nhanh chóng",
-      detail_desc_01: "Tích điểm đối với mỗi lượt đặt chỗ thành công. Quy đổi thành Lux Credit để du lịch nhiều hơn nữa.",
+      detail_desc_01:
+        "Tích điểm đối với mỗi lượt đặt chỗ thành công. Quy đổi thành Lux Credit để du lịch nhiều hơn nữa.",
       detail_02: "Tiện ích thông minh",
-      detail_desc_02: "Check-in và kiểm tra hóa đơn thanh toán kể cả khi không có kết nối mạng. Hoàn tiền nhanh gọn. Đổi lịch dễ dàng.",
+      detail_desc_02:
+        "Check-in và kiểm tra hóa đơn thanh toán kể cả khi không có kết nối mạng. Hoàn tiền nhanh gọn. Đổi lịch dễ dàng.",
       detail_03: "Thanh toán đơn giản",
-      detail_desc_03: "Phương thức thanh toán tiện lợi, an toàn. Tích hợp chức năng lưu thẻ để đặt phòng lần sau.",
+      detail_desc_03:
+        "Phương thức thanh toán tiện lợi, an toàn. Tích hợp chức năng lưu thẻ để đặt phòng lần sau.",
       detail_04: "Ưu đãi mỗi ngày",
-      detail_desc_04: "Nhận thông báo ưu đãi từ Luxstay khi có kế hoạch du lịch để lựa chọn và đặt ngay cho mình một chỗ ở phù hợp, tiện nghi với giá tốt nhất.",
+      detail_desc_04:
+        "Nhận thông báo ưu đãi từ Chiptrip khi có kế hoạch du lịch để lựa chọn và đặt ngay cho mình một chỗ ở phù hợp, tiện nghi với giá tốt nhất.",
       signup: "Đăng ký thành viên",
       email: "Địa chỉ email",
       phone: "Số điện thoại",
@@ -205,9 +215,9 @@ export default {
       signup_btn: "Đăng ký",
       login_btn: "Đăng nhập",
       password_rule: "Tối thiểu 6 ký tự",
-      had_account: "Bạn đã có tài khoản Luxstay?",
+      had_account: "Bạn đã có tài khoản Chiptrip?",
       login: "Đăng nhập",
-      not_have_acc: "Bạn chưa có tài khoản Luxstay?"
+      not_have_acc: "Bạn chưa có tài khoản Chiptrip?",
     },
     user: {
       my_booked_list: "Đặt chỗ của tôi",
@@ -218,14 +228,14 @@ export default {
       book_type_title: "Loại đặt phòng",
       from_month: "Từ tháng",
       to_month: "Đến tháng",
-      pay: "Thanh toán"
-    }
+      pay: "Thanh toán",
+    },
   },
   errors: {
     not_valid_email: "Không đúng định dạng email.",
-    not_valid_password: "Mật khẩu cần dài hơn 6 ký tự."
+    not_valid_password: "Mật khẩu cần dài hơn 6 ký tự.",
   },
   request: {
-    login: "Bạn cần đăng nhập để truy cập trang này"
-  }
+    login: "Bạn cần đăng nhập để truy cập trang này",
+  },
 };

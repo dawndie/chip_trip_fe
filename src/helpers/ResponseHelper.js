@@ -1,6 +1,6 @@
 class ResponseHelper {
   constructor(response) {
-    this.data = response.data.data;
+    this.data = response.data.result;
     this.status = response.status;
     this.error = response.error;
     this.errorMesssage = response.data.message;
@@ -8,9 +8,7 @@ class ResponseHelper {
   }
 
   isSuccess() {
-    return (
-      (this.status === 200 || this.status == 201)
-    );
+    return this.status === 200 || this.status == 201;
   }
 
   isError() {

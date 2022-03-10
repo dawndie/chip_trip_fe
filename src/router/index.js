@@ -19,14 +19,12 @@ const routes = [
   {
     path: "/room",
     name: "Room",
-    component: () =>
-      import(/* webpackChunkName: "Room" */ "../views/Room.vue"),
+    component: () => import(/* webpackChunkName: "Room" */ "../views/Room.vue"),
   },
   {
     path: "/book",
     name: "Book",
-    component: () =>
-      import(/* webpackChunkName: "Book" */ "../views/Book.vue"),
+    component: () => import(/* webpackChunkName: "Book" */ "../views/Book.vue"),
   },
   {
     path: "/signup",
@@ -43,8 +41,7 @@ const routes = [
   {
     path: "/user",
     name: "User",
-    component: () =>
-      import(/* webpackChunkName: "User" */ "../views/User.vue"),
+    component: () => import(/* webpackChunkName: "User" */ "../views/User.vue"),
   },
 ];
 

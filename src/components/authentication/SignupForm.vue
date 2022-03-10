@@ -145,18 +145,19 @@ export default {
 
     const signUp = async () => {
       const reqBody = {
-        name: first_name.value + last_name.value,
+        firstName: first_name.value,
+        lastName: last_name.value,
         email: email.value,
         password: password.value,
-        password_confirmation: password.value,
-        phone: phoneNumber.number,
+        // password_confirmation: password.value,
+        phoneNumber: phoneNumber.number,
       };
 
       const handler = new ApiHandler()
         .setData(reqBody)
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-
+          console.log(data);
           if (data.isSuccess()) {
             ElNotification({
               title: "Signed up successfully!",

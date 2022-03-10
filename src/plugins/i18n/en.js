@@ -29,7 +29,7 @@ export default {
       homestay: "Homestay",
       motel: "Motel",
       villa: "Villa",
-      penhouse: "Penhouse"
+      penhouse: "Penhouse",
     },
     currency: {
       VND: "VND",
@@ -72,7 +72,7 @@ export default {
       "vehicle-for-lease": "Vehicles for lease",
       shopping: "Shopping",
       cafe: "Cafeteria",
-      bar: "Bar"
+      bar: "Bar",
     },
     signout: "Sign out",
     my_book: "My book",
@@ -85,7 +85,7 @@ export default {
     bookmark: "Bookmark",
     rmv_bookmark: "Delete bookmark",
     recommend: "Recommend rooms",
-    no_review: "No review just yet"
+    no_review: "No review just yet",
   },
   places: {
     hanoi: "Hanoi",
@@ -97,9 +97,9 @@ export default {
   },
   pages: {
     home: {
-      greetings: "Welcome to Luxstay!",
+      greetings: "Welcome to Chiptrip!",
       greetings_info_1:
-        "Book homes, homestay, car rental, experience and more on Luxstay",
+        "Book homes, homestay, car rental, experience and more on Chiptrip",
       greetings_info_2: "to enjoy !",
       places: "Top Destinations",
       places_info:
@@ -131,20 +131,22 @@ export default {
       availability_description: "Price may changes in weekends or holidays",
       repay_rules: "House Rules & Cancellation Policy",
       cancel_rules: "Cancellation policy",
-      repay_rules_description: "Guests will receive a full refund if cancel within 48 hours of booking and at least 5 days before check-in. If guests cancel after 48 hours of booking and at least 5 days before check-in, the service fee is non-refundable.",
+      repay_rules_description:
+        "Guests will receive a full refund if cancel within 48 hours of booking and at least 5 days before check-in. If guests cancel after 48 hours of booking and at least 5 days before check-in, the service fee is non-refundable.",
       rules: {
         book_success: "Reservation Submit",
         repay_100: "Full refund",
         after_48: "48 hours later",
         repay_100_no_service: "Full refund, minus the service fee",
         "5_day_to_checkin": "5 days before check-in",
-        repay_50: "50% Refund, minus the first night and the service fee and other free",
+        repay_50:
+          "50% Refund, minus the first night and the service fee and other free",
         checkin: "Check-in",
         special_rules: "Special rules",
         smoking: "Smoking",
         pet: "Pet",
         cooking: "Cooking",
-        party: "Party"
+        party: "Party",
       },
       map: "Map",
       price_a_night: "Price",
@@ -160,7 +162,7 @@ export default {
       post_review: "Post your review",
       apply_coupon: "Apply",
       coupon: "Coupon",
-      discount: "Discount"
+      discount: "Discount",
     },
     book: {
       book_info: "Booking information",
@@ -169,7 +171,8 @@ export default {
       checkin: "Check-in",
       checkout: "Check-out",
       responsibility: "Damage Policy",
-      all_responsibility: "You will be responsible for any damage to the rental property caused by you or your party during your stay.",
+      all_responsibility:
+        "You will be responsible for any damage to the rental property caused by you or your party during your stay.",
       rules: "House rules",
       making_noise_rule: "Avoid making noises after 10 pm\n",
       guest_info: "Your information",
@@ -181,19 +184,24 @@ export default {
       example: "e.g",
       country: "Country of residence",
       country_notice: "This content will be used for legal policy",
-      book_detail: "Booking detail"
+      book_detail: "Booking detail",
     },
     authen: {
       welcome: "Sign up for more promotions and benefits",
-      detail_welcome: "Swift, convenient, and safe. Sign up now for more interests.",
+      detail_welcome:
+        "Swift, convenient, and safe. Sign up now for more interests.",
       detail_01: "Lux Credit",
-      detail_desc_01: "Earn Lux Coins for each successful booking and use them for your next trips.",
+      detail_desc_01:
+        "Earn Lux Coins for each successful booking and use them for your next trips.",
       detail_02: "Smart functions",
-      detail_desc_02: "Check-in and check your receipts offline. Refund faster and change calendar easier.",
+      detail_desc_02:
+        "Check-in and check your receipts offline. Refund faster and change calendar easier.",
       detail_03: "Simple payment",
-      detail_desc_03: "Save card information in My Cards, much safer and convenient for the next payment.",
+      detail_desc_03:
+        "Save card information in My Cards, much safer and convenient for the next payment.",
       detail_04: "New promotions every day",
-      detail_desc_04: "Update promotions from Luxstay and choose great accommodation at your budget.",
+      detail_desc_04:
+        "Update promotions from Chiptrip and choose great accommodation at your budget.",
       signup: "Sign up as member",
       email: "Email address",
       phone: "Phone number",
@@ -203,9 +211,9 @@ export default {
       signup_btn: "Signup",
       login_btn: "Login",
       password_rule: "At least 6 characters",
-      had_account: "Already had Luxstay account?",
+      had_account: "Already had Chiptrip account?",
       login: "Login",
-      not_have_acc: "Havent had Luxstay account yet?"
+      not_have_acc: "Havent had Chiptrip account yet?",
     },
     user: {
       my_booked_list: "My booked list",
@@ -216,14 +224,14 @@ export default {
       book_type_title: "Booked type",
       from_month: "From month",
       to_month: "To month",
-      pay: "Pay"
-    }
+      pay: "Pay",
+    },
   },
   errors: {
     not_valid_email: "Not valid email format.",
-    not_valid_password: "Password must be longer than 6 characters."
+    not_valid_password: "Password must be longer than 6 characters.",
   },
   request: {
-    login: "You need to login first"
-  }
+    login: "You need to login first",
+  },
 };

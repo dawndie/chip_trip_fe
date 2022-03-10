@@ -51,7 +51,7 @@
         ></el-empty>
         <div v-else class="my-booked-list--list">
           <el-row :gutter="20">
-            <el-col v-for="(item, i) in list" :key="i" :span="24" :md="12" >
+            <el-col v-for="(item, i) in list" :key="i" :span="24" :md="12">
               <booked-room-item :item="item" class="mb-2" />
             </el-col>
           </el-row>
@@ -68,9 +68,9 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
 import BookedRoomItem from "@/components/user/BookedRoomItem";
-import bookApi from '@/api/services/bookApi.js'
-import ApiHandler from '@/helpers/ApiHandler'
-import ResponseHelper from '@/helpers/ResponseHelper'
+import bookApi from "@/api/services/bookApi.js";
+import ApiHandler from "@/helpers/ApiHandler";
+import ResponseHelper from "@/helpers/ResponseHelper";
 
 export default {
   components: { BookedRoomItem },
@@ -80,7 +80,7 @@ export default {
     let monthRange = ref([]);
     let activeName = ref("first");
 
-    let loadBookedList = ref(false)
+    let loadBookedList = ref(false);
 
     let list = ref([]);
 
@@ -102,39 +102,39 @@ export default {
     ]);
 
     const store = useStore();
-    let userId = computed(() => store.state.user.user.id)
+    let userId = computed(() => store.state.user.user.id);
 
-    const router = useRouter()
+    const router = useRouter();
 
     const getBookedRoomList = async () => {
       if (!userId.value) {
-        router.push({ name: "Login" })
-        return
+        router.push({ name: "Login" });
+        return;
       }
 
       if (store.state.user.bookedList.length) {
-        list.value = store.state.user.bookedList
-        return
+        list.value = store.state.user.bookedList;
+        return;
       }
 
-      loadBookedList.value = true
+      loadBookedList.value = true;
 
       const handler = new ApiHandler()
-                          .setData({id: userId.value})
-                          .setOnResponse(rawData => {
-                            const data = new ResponseHelper(rawData)
-                            list.value = data.data
-                            store.commit('changeBookedList', data.data)
-                          })
-                          .setOnFinally(() => {
-                            loadBookedList.value = false
-                          })
-      
-      const onRequest = async () => {
-        return bookApi.getBookingByUser(handler.data)
-      }
+        .setData({ id: userId.value })
+        .setOnResponse((rawData) => {
+          const data = new ResponseHelper(rawData);
+          list.value = data.data;
+          store.commit("changeBookedList", data.data);
+        })
+        .setOnFinally(() => {
+          loadBookedList.value = false;
+        });
 
-      await handler.setOnRequest(onRequest).execute()
+      const onRequest = async () => {
+        return bookApi.getBookingByUser(handler.data);
+      };
+
+      await handler.setOnRequest(onRequest).execute();
     };
 
     watch(
@@ -143,8 +143,8 @@ export default {
     );
 
     onMounted(() => {
-      getBookedRoomList()
-    })
+      getBookedRoomList();
+    });
 
     // TO DO: FILTER ON MONTH RANGE
     // watch(
@@ -159,7 +159,7 @@ export default {
       list,
       handleClickTab,
       bookTypes,
-      loadBookedList
+      loadBookedList,
     };
   },
 };

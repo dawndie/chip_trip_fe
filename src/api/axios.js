@@ -1,20 +1,22 @@
 import axios from "axios";
-import { BASE_URL } from "./baseApi"
+import { BASE_URL } from "./baseApi";
 
-import store from '../store/index'
+import store from "../store/index";
 
 export const axiosInstance = axios.create({
-    baseURL: BASE_URL
+  baseURL: BASE_URL,
 });
 
-axiosInstance.interceptors.request.use(function (config) {
+axiosInstance.interceptors.request.use(
+  function (config) {
     // Do something before request is sent
-    const token = store.state.token || localStorage.getItem('token');
+    const token = store.state.token || localStorage.getItem("token");
     config.headers.Authorization = token;
 
     return config;
-  }, function (error) {
+  },
+  function (error) {
     // Do something with request error
     return Promise.reject(error);
-  });
-
+  }
+);

@@ -10,16 +10,21 @@
       {{ $t(`shared.${item.status}`) }}
     </div> -->
     <div class="booked-room-item--date">
-      {{ convertDate(item.checkin, 'T') }} - {{ convertDate(item.checkout, 'T') }}
+      {{ convertDate(item.checkin, "T") }} -
+      {{ convertDate(item.checkout, "T") }}
     </div>
     <div class="booked-room-item--description mt-2">
-      <router-link :to="{ name: 'Room', query: { id: item.place_id } }" class="link link--highlight">{{
-        item.place_name
-      }}</router-link>
+      <router-link
+        :to="{ name: 'Room', query: { id: item.place_id } }"
+        class="link link--highlight"
+        >{{ item.place_name }}</router-link
+      >
       <p class="mt-1">{{ $t("shared.type." + item.place_type) }}</p>
     </div>
     <div class="d-flex justify-content-between align-items-center">
-      <div class="booked-room-item--price">{{ $t("shared.total_price") }}: {{ item.price }}</div>
+      <div class="booked-room-item--price">
+        {{ $t("shared.total_price") }}: {{ item.price }}
+      </div>
       <!-- <el-button
         v-if="item.status == 'pending'"
         round
@@ -32,7 +37,7 @@
 </template>
 
 <script>
-import { convertDate } from "@/helpers/sharedHelpers"
+import { convertDate } from "@/helpers/sharedHelpers";
 
 export default {
   props: {
@@ -44,8 +49,8 @@ export default {
 
   setup() {
     return {
-      convertDate
-    }
-  }
+      convertDate,
+    };
+  },
 };
 </script>

@@ -5,8 +5,8 @@
         <router-link :to="{ name: 'Home' }">
           <img
             :src="require('@/assets/images/wallet@2x.png')"
-            width="200"
-            height="35"
+            width=""
+            height="60"
           />
         </router-link>
       </div>
@@ -59,7 +59,6 @@
       <logged-member-picker v-else />
       <setting-picker />
     </div>
-
     <i
       v-else
       class="el-icon-menu cursor menu-icon"
@@ -99,7 +98,6 @@ export default {
 
     let checkIsMdOrAboveScreen = computed(() => isMdOrAboveScreen(window));
     let checkIsXsScreen = computed(() => isXsScreen(window));
-
     const router = useRouter();
 
     function search() {

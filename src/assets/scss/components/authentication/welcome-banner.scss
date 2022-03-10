@@ -1,31 +1,36 @@
 @import "./consts.scss";
 
 .welcome-banner {
-    background: linear-gradient(90deg,#f65e38 0,#f68a39 51%,#f65e38);
-    padding: 3rem 0 5rem;
-    color: #fff;
+    // background-color: #FF9A8B;
+    // background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
+    background-color: #FF3CAC;
+background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+
+
+  padding: 3rem 0 5rem;
+  color: #fff;
+
+  @media screen and (min-width: $sm) {
+    padding: 3rem 0;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
 
     @media screen and (min-width: $sm) {
-        padding: 3rem 0;
+      font-size: 1.5rem;
+      line-height: 2.25rem;
+      margin-bottom: 0.625rem;
     }
+  }
 
-    &__title {
-        font-size: 1.25rem;
-        margin-bottom: .625rem;
+  &__desc {
+    font-size: 0.95rem;
+    margin: 0;
 
-        @media screen and (min-width: $sm) {
-            font-size: 1.5rem;
-            line-height: 2.25rem;
-            margin-bottom: .625rem;
-        }    
+    @media screen and (min-width: $sm) {
+      font-size: 1.125rem;
     }
-
-    &__desc {
-        font-size: .95rem;
-        margin: 0;
-
-        @media screen and (min-width: $sm) {
-            font-size: 1.125rem;
-        }
-    }
+  }
 }

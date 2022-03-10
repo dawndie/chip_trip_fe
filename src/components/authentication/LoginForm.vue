@@ -92,10 +92,12 @@ export default {
         .setData(reqBody)
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
+          console.log(data);
 
           if (data.isSuccess()) {
-            store.commit("changeToken", data.data.token);
-            store.commit("changeUser", data.data.user);
+            console.log(data.data);
+            store.commit("changeToken", data.data.data.token);
+            store.commit("changeUser", data.data.data.user);
 
             ElNotification({
               title: "Logged in successfully!",

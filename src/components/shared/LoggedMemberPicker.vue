@@ -53,12 +53,12 @@ export default {
   setup() {
     const items = [
       {
-        link: { name: 'User' },
+        link: { name: "User" },
         icon: "calendar",
         title: i18n.global.t("shared.my_book"),
       },
       {
-        link: { name: 'User', query: { tab: 'bookmark' } },
+        link: { name: "User", query: { tab: "bookmark" } },
         icon: "heart",
         title: i18n.global.t("shared.bookmark"),
       },
@@ -67,13 +67,13 @@ export default {
 
     let checkIsMdOrAboveScreen = computed(() => isMdOrAboveScreen(window));
 
-    const store = useStore()
+    const store = useStore();
     const signout = () => {
-      store.commit('changeToken', '')
-      store.commit('changeUser', '')
-      console.log(store.getters.isLoggedIn)
+      store.commit("changeToken", "");
+      store.commit("changeUser", "");
+      console.log(store.getters.isLoggedIn);
     };
-    let user = computed(() => store.state.user.user)
+    let user = computed(() => store.state.user.user);
 
     return {
       items,
@@ -81,7 +81,7 @@ export default {
       toggleDialog,
       checkIsMdOrAboveScreen,
       signout,
-      user
+      user,
     };
   },
 };
