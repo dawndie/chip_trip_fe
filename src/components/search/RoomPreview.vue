@@ -15,9 +15,9 @@
       "
     >
       <small>{{
-        `${$t("shared.type." + item.place_type)} - ${item.room_attributes.num_of_bedroom} ${$t(
-          "shared.bedroom"
-        )}`
+        `${$t("shared.type." + item.place_type)} - ${
+          item.room_attributes.num_of_bedroom
+        } ${$t("shared.bedroom")}`
       }}</small>
       <div class="rating" v-if="item.ratings.length">
         <font-awesome-icon icon="star" color="#ffcd3c" />
@@ -34,9 +34,9 @@
     <strong class="room-preview--price">
       <small
         >{{
-          `${item.schedule_price_attributes.normal_day_price}${$t("shared.currency." + item.policy_attributes.currency)}/${$t(
-            "shared.night"
-          )}`
+          `${item.schedule_price_attributes.normal_day_price}${$t(
+            "shared.currency." + item.policy_attributes.currency
+          )}/${$t("shared.night")}`
         }}
       </small>
     </strong>
@@ -52,7 +52,7 @@ export default {
     },
     currency: {
       type: String,
-      default: 'usd',
+      default: "usd",
     },
   },
 };

@@ -32,12 +32,24 @@ export default {
   components: { BookmarkPreview },
 
   setup() {
-    let list = ref([]);
+    let list = ref([
+      {
+        price: "200.000",
+        checkin: "2012-01-26T13:51:50.417-07:00",
+        checkout: "2012-01-26T13:51:50.417-07:00",
+        place_price: 1000000,
+        place_id: 13,
+        place_name: "Homestay Cổ Am",
+        place_address: "Hà nội",
+        place_image: "@/assets/images/1.png",
+        status: "pendding",
+      },
+    ]);
 
-    let loadBookmark = ref(false)
+    let loadBookmark = ref(false);
 
     const getUserBookmark = async () => {
-      loadBookmark.value = true
+      loadBookmark.value = true;
 
       const handler = new ApiHandler()
         .setOnResponse((rawData) => {
@@ -45,7 +57,7 @@ export default {
           list.value = data.data;
         })
         .setOnFinally(() => {
-          loadBookmark.value = false
+          loadBookmark.value = false;
         });
 
       const onRequest = async () => {
@@ -95,7 +107,7 @@ export default {
     return {
       list,
       onDeleteBookmark,
-      loadBookmark
+      loadBookmark,
     };
   },
 };

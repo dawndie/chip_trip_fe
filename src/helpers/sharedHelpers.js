@@ -28,35 +28,35 @@ export function getGuestPickerButtonTitle(guestNumber) {
 
 export function convertCurrency(price, locale) {
   if (locale == "vi") {
-    return price.toLocaleString('vi-VN', {
-      style: 'currency',
-      currency: 'VND',
+    return price.toLocaleString("vi-VN", {
+      style: "currency",
+      currency: "VND",
     });
   } else if (locale == "en") {
-    return price.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    return price.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
     });
   }
 }
 
 export function convertDate(date, format = "YYYY-mm-dd") {
-  if (format == 'T') {
-    date = date.split('T')[0]
-  } 
-  const splittedDate = date.split("-")
-  return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`  
+  if (format == "T") {
+    date = date.split("T")[0];
+  }
+  const splittedDate = date.split("-");
+  return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
 }
 
 export function getBusinessDatesCount(startDate, endDate) {
   let count = 0;
   let curDate = new Date(startDate.getTime());
-  console.log(curDate)
+  console.log(curDate);
   while (curDate <= endDate) {
-      const dayOfWeek = curDate.getDay();
-      console.log(dayOfWeek)
-      if(dayOfWeek !== 0 && dayOfWeek !== 6) count++;
-      curDate.setDate(curDate.getDate() + 1);
+    const dayOfWeek = curDate.getDay();
+    console.log(dayOfWeek);
+    if (dayOfWeek !== 0 && dayOfWeek !== 6) count++;
+    curDate.setDate(curDate.getDate() + 1);
   }
   return count;
 }

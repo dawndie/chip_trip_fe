@@ -92,14 +92,14 @@ export default {
     let checkIsMdOrAboveScreen = computed(() => isMdOrAboveScreen(window));
 
     const store = useStore();
-    let isLoggedIn = computed(() => store.getters.isLoggedIn)
+    let isLoggedIn = computed(() => store.getters.isLoggedIn);
 
     return {
       placeSlickItemNumber,
       checkIsMdOrAboveScreen,
       BANNER_FILENAMES,
       INTERESTING_PLACES,
-      isLoggedIn
+      isLoggedIn,
     };
   },
 };

@@ -89,7 +89,7 @@ export default {
       serviceList.value = [];
       shoppingList.value = [];
 
-      done()
+      done();
     }
     function done() {
       context.emit("choose-filters", {
