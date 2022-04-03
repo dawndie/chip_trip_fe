@@ -14,7 +14,7 @@ import {
   RECOMMENDER,
   GET_RECOMMEND_BY_CITY,
   GET_SEARCH_BY_NAME_OR_ADD,
-  GET_FILTER
+  GET_FILTER,
 } from "../baseApi";
 
 export default {
@@ -46,15 +46,19 @@ export default {
     return axiosInstance.get(BOOKMARK);
   },
   getRecommendByCity({ city, num_rec = 5 }) {
-    return axiosInstance.get(`${GET_RECOMMEND_BY_CITY}/${city}`, { params: { num_rec } })
+    return axiosInstance.get(`${GET_RECOMMEND_BY_CITY}/${city}`, {
+      params: { num_rec },
+    });
   },
   getRecommendByPlace({ id, num_rec = 5 }) {
-    return axiosInstance.get(`${RECOMMENDER}/${id}`, { params: { num_rec } })
+    return axiosInstance.get(`${RECOMMENDER}/${id}`, { params: { num_rec } });
   },
   getSearchByNameOrAdd({ search, page }) {
-    return axiosInstance.get(`${GET_SEARCH_BY_NAME_OR_ADD}/${search}/${page}`)
+    return axiosInstance.get(`${GET_SEARCH_BY_NAME_OR_ADD}/${search}/${page}`);
   },
-  getFilter({params, city, page = 1}) {
-    return axiosInstance.get(`${GET_FILTER}/${city}/${page}`, { params: { ...params } })
+  getFilter({ params, city, page = 1 }) {
+    return axiosInstance.get(`${GET_FILTER}/${city}/${page}`, {
+      params: { ...params },
+    });
   },
 };

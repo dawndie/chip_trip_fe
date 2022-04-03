@@ -22,24 +22,29 @@ export default {
     },
     currency: {
       type: String,
-      default: 'usd'
-    }
+      default: "usd",
+    },
   },
 
   setup(props) {
-
     let tableData = computed(() => [
       {
         date: i18n.global.t("pages.room.nightly_price"),
-        price: `${props.price.normal_day_price} ${i18n.global.t("shared.currency." + props.currency)}`,
+        price: `${props.price.normal_day_price} ${i18n.global.t(
+          "shared.currency." + props.currency
+        )}`,
       },
       {
         date: i18n.global.t("pages.room.weekend_price"),
-        price: `${props.price.weekend_price} ${i18n.global.t("shared.currency." + props.currency)}`,
+        price: `${props.price.weekend_price} ${i18n.global.t(
+          "shared.currency." + props.currency
+        )}`,
       },
       {
         date: i18n.global.t("pages.room.cleaning_price"),
-        price: `${props.price.cleaning_price} ${i18n.global.t("shared.currency." + props.currency)}`,
+        price: `${props.price.cleaning_price} ${i18n.global.t(
+          "shared.currency." + props.currency
+        )}`,
       },
       // {
       //   date: i18n.global.t("pages.room.additional_guests_fee"),
@@ -66,6 +71,7 @@ export default {
     ]);
 
     return {
+      
       tableData,
     };
   },

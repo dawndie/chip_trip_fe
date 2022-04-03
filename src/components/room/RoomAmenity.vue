@@ -13,7 +13,13 @@
   </template> -->
 
   <el-row>
-    <el-col v-for="fac in amenity" :key="fac.id" :span="12" :md="8" class="mb-1">
+    <el-col
+      v-for="fac in amenity"
+      :key="fac.id"
+      :span="12"
+      :md="8"
+      class="mb-1"
+    >
       <font-awesome-icon icon="angle-right" class="mr-1" />
       <span>{{ fac }}</span>
     </el-col>
@@ -33,8 +39,8 @@ export default {
     },
     amenityTypes: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
   // setup({ amenity }) {

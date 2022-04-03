@@ -34,8 +34,9 @@
     <p class="m-0 ml-1">{{ room.room_attributes.square }} m<sup>2</sup></p>
   </div>
   <p class="room-page--general-description">
-    {{ $t("shared.type." + room.place_type) }} - {{ room.room_attributes.num_of_bedroom }}
-    {{ $t("shared.bedrooms") }} - {{ room.room_attributes.num_of_bed }} {{ $t("shared.beds") }} -
+    {{ $t("shared.type." + room.place_type) }} -
+    {{ room.room_attributes.num_of_bedroom }} {{ $t("shared.bedrooms") }} -
+    {{ room.room_attributes.num_of_bed }} {{ $t("shared.beds") }} -
     {{ room.room_attributes.num_of_bathroom }} {{ $t("shared.bathrooms") }} -
     {{ $t("shared.maximum") }} {{ room.policy_attributes.max_num_of_people }}
     {{ $t("shared.guest_name") }}
@@ -61,20 +62,20 @@ export default {
     },
     isBookmarked: {
       type: Boolean,
-      default: false
+      default: false,
     },
     bookmark: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     removeBookmark: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     loadBookmark: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   setup(props) {
