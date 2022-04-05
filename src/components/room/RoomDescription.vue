@@ -31,18 +31,18 @@
   <div class="d-flex align-items-center mb-1">
     <font-awesome-icon icon="building" class="mr-1" />
     <strong>{{ $t("pages.room.other") }}</strong>
-    <p class="m-0 ml-1">{{ room.room_attributes.square }} m<sup>2</sup></p>
+    <p class="m-0 ml-1">{{ room.roomAttribute.square }} m<sup>2</sup></p>
   </div>
   <p class="room-page--general-description">
-    {{ $t("shared.type." + room.place_type) }} -
-    {{ room.room_attributes.num_of_bedroom }} {{ $t("shared.bedrooms") }} -
-    {{ room.room_attributes.num_of_bed }} {{ $t("shared.beds") }} -
-    {{ room.room_attributes.num_of_bathroom }} {{ $t("shared.bathrooms") }} -
-    {{ $t("shared.maximum") }} {{ room.policy_attributes.max_num_of_people }}
+    {{ $t("shared.type." + room.placeType.name) }} -
+    {{ room.roomAttribute.numOfBedroom }} {{ $t("shared.bedrooms") }} -
+    {{ room.roomAttribute.numOfBed }} {{ $t("shared.beds") }} -
+    {{ room.roomAttribute.numOfBathroom }} {{ $t("shared.bathrooms") }} -
+    {{ $t("shared.maximum") }} {{ room.policyAttribute.maxNumOfPeople }}
     {{ $t("shared.guest_name") }}
   </p>
   <div class="hideable-text" id="hideable-text">
-    <div class="hideable-text--text" v-html="room.details"></div>
+    <div class="hideable-text--text" v-html="room.detail"></div>
     <div class="hideable-text--toggle">
       <button class="text-btn text-btn--highlight" @click="showText">
         {{ isTextShown ? $t("shared.collapse") : $t("shared.read_more") }}

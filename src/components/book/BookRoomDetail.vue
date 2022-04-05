@@ -143,7 +143,7 @@ export default {
       const totalDays = dateDiff.value + 1;
       const workDays = getBusinessDatesCount(
         new Date(checkin.value),
-        new Date(checkout.value)
+        new Date(checkout.value),
       );
       console.log(checkin.value, new Date(checkin.value).getTime());
 

@@ -180,7 +180,7 @@ export default {
         if (isLoggedIn.value) {
           onGetRecommendByCity();
         }
-      }
+      },
     );
 
     let locationSearch = ref(route.query.l);
@@ -193,7 +193,7 @@ export default {
 
         page.value = 1;
         onGetSearchByNameOrAdd();
-      }
+      },
     );
 
     async function onGetTotalNumberOfPlaceInCity() {

@@ -16,17 +16,14 @@
           :loadBookmark="loadBookmark"
           :room="detailedRoom"
           :isBookmarked="isBookmarked"
-          :bookmark="onPostNewBookmark"
           :removeBookmark="onDeleteBookmark"
         ></room-description>
         <div class="spacer"></div>
-        <room-amenity
-          :amenity="detailedRoom.place_facilities_attributes"
-        ></room-amenity>
+        <room-amenity :amenity="detailedRoom.__amenities__"></room-amenity>
         <div class="spacer"></div>
         <room-price
-          :price="detailedRoom.schedule_price_attributes"
-          :currency="detailedRoom.policy_attributes.currency"
+          :price="detailedRoom.schedulePriceAttribute"
+          :currency="detailedRoom.policyAttribute.currency"
         ></room-price>
         <div class="spacer"></div>
         <room-review
@@ -38,14 +35,14 @@
           :time="detailedRoom.rule_attributes"
         ></room-repay-rules>
         <div class="spacer"></div>
-        <room-map :center="centerMap"></room-map>
+        <!-- <room-map :center="centerMap"></room-map> -->
       </el-col>
       <el-col :span="24" :md="8" v-if="detailedRoom.id">
         <book-room
           :defaultInput="filterQuery"
           :defaultPrice="detailedRoom.schedule_price_attributes"
           :roomId="detailedRoom.id"
-          :currency="detailedRoom.policy_attributes.currency"
+          :currency="detailedRoom.policyAttribute.currency"
           @book-room="bookRoom"
         ></book-room>
       </el-col>
@@ -88,7 +85,7 @@ import RoomPrice from "@/components/room/RoomPrice.vue";
 // import RoomAvailability from "@/components/room/RoomAvailability.vue";
 import RoomReview from "@/components/room/RoomReview.vue";
 import RoomRepayRules from "@/components/room/RoomRepayRules.vue";
-import RoomMap from "@/components/room/RoomMap.vue";
+// import RoomMap from "@/components/room/RoomMap.vue";
 import BookRoom from "@/components/room/BookRoom.vue";
 import RoomPreview from "@/components/search/RoomPreview.vue";
 
@@ -108,7 +105,6 @@ export default {
     RoomPrice,
     RoomReview,
     RoomRepayRules,
-    RoomMap,
     BookRoom,
     RoomPreview,
   },
@@ -120,10 +116,10 @@ export default {
 
     let filterQuery = ref(route.query);
 
-    const centerMap = computed(() => ({
-      // lat: DETAILED_ROOM.address.data.latitude,
-      // lng: DETAILED_ROOM.address.data.longitude,
-    }));
+    // const centerMap = computed(() => ({
+    // lat: DETAILED_ROOM.address.data.latitude,
+    // lng: DETAILED_ROOM.address.data.longitude,
+    // }));
 
     let loadRoom = ref(false);
     let loadRecommendedRoom = ref(false);
@@ -145,13 +141,13 @@ export default {
           onGetCheckBookmark();
           onGetRecommendByPlace();
         }
-      }
+      },
     );
 
     let imageArray = ref([]);
     function transformImageArray() {
       imageArray.value = detailedRoom.value.overviews_attributes.map(
-        (e) => e.image
+        (e) => e.image,
       );
     }
 
@@ -162,7 +158,9 @@ export default {
         .setData({ id: roomId })
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          detailedRoom.value = data.data;
+          console.log(data.data.data);
+          detailedRoom.value = data.data.data;
+          console.log(detailedRoom.value.__amenities__);
           transformImageArray();
         })
         .setOnFinally(() => {
@@ -329,7 +327,7 @@ export default {
 
     return {
       filterQuery,
-      centerMap,
+      // centerMap,
       detailedRoom,
       imageArray,
       roomReviews,

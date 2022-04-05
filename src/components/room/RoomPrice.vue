@@ -1,7 +1,6 @@
 <template>
   <h3>{{ $t("pages.room.price") }}</h3>
   <p>{{ $t("pages.room.price_description") }}</p>
-
   <el-table :data="tableData" style="width: 100%">
     <el-table-column prop="date" :label="$t('pages.room.price_date')" />
     <el-table-column prop="price" :label="$t('pages.room.price')" />
@@ -30,20 +29,20 @@ export default {
     let tableData = computed(() => [
       {
         date: i18n.global.t("pages.room.nightly_price"),
-        price: `${props.price.normal_day_price} ${i18n.global.t(
-          "shared.currency." + props.currency
+        price: `${props.price.normalDayPrice} ${i18n.global.t(
+          "shared.currency." + props.currency,
         )}`,
       },
       {
         date: i18n.global.t("pages.room.weekend_price"),
-        price: `${props.price.weekend_price} ${i18n.global.t(
-          "shared.currency." + props.currency
+        price: `${props.price.weekendPrice} ${i18n.global.t(
+          "shared.currency." + props.currency,
         )}`,
       },
       {
         date: i18n.global.t("pages.room.cleaning_price"),
-        price: `${props.price.cleaning_price} ${i18n.global.t(
-          "shared.currency." + props.currency
+        price: `${props.price.cleaningPrice} ${i18n.global.t(
+          "shared.currency." + props.currency,
         )}`,
       },
       // {
@@ -71,7 +70,6 @@ export default {
     ]);
 
     return {
-      
       tableData,
     };
   },

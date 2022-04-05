@@ -101,7 +101,7 @@ export default {
 
             ElNotification({
               title: "Logged in successfully!",
-              message: "Welcome to Lxstay!",
+              message: "Welcome to Chiptrip!",
               type: "success",
             });
 

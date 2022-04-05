@@ -1,12 +1,12 @@
 export default {
-    state: {
-        coupon: 0
+  state: {
+    coupon: 0,
+  },
+  getters: {},
+  mutations: {
+    changeCoupon(state, value) {
+      state.coupon = value;
     },
-    getters: {},
-    mutations: {
-        changeCoupon(state, value) {
-            state.coupon = value
-        }
-    },
-    actions: {} 
-}
+  },
+  actions: {},
+};

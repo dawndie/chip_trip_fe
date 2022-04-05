@@ -21,7 +21,7 @@
       class="mb-1"
     >
       <font-awesome-icon icon="angle-right" class="mr-1" />
-      <span>{{ fac }}</span>
+      <span>{{ fac.name }}</span>
     </el-col>
   </el-row>
 </template>

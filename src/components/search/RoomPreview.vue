@@ -35,7 +35,7 @@
       <small
         >{{
           `${item.schedule_price_attributes.normal_day_price}${$t(
-            "shared.currency." + item.policy_attributes.currency
+            "shared.currency." + item.policy_attributes.currency,
           )}/${$t("shared.night")}`
         }}
       </small>

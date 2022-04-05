@@ -23,7 +23,7 @@ export default {
 
   setup(props) {
     let platform = ref(null);
-    let apikey = ref(process.env.VUE_APP_MAP_APIKEY);
+    let apikey = ref("Dsxecp7tROGOeazBkG0wsyC_FX3y8aF1CZt_YPn8efM");
     let hereMap = ref(null);
 
     watchEffect(
@@ -34,7 +34,7 @@ export default {
       },
       {
         flush: "post",
-      }
+      },
     );
 
     function initializeHereMap() {
