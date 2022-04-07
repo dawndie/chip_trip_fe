@@ -30,7 +30,7 @@ export default {
         (obj) =>
           obj.day == formattedDate[2] &&
           obj.month == formattedDate[1] &&
-          obj.year == formattedDate[0]
+          obj.year == formattedDate[0],
       );
     }
 
