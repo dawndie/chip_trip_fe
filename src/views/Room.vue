@@ -40,7 +40,7 @@
       <el-col :span="24" :md="8" v-if="detailedRoom.id">
         <book-room
           :defaultInput="filterQuery"
-          :defaultPrice="detailedRoom.schedule_price_attributes"
+          :defaultPrice="detailedRoom.schedulePriceAttribute"
           :roomId="detailedRoom.id"
           :currency="detailedRoom.policyAttribute.currency"
           @book-room="bookRoom"
@@ -181,7 +181,8 @@ export default {
         .setData({ id: roomId })
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          roomReviews.value = data.data;
+          console.log(data.data);
+          roomReviews.value = data.data.data;
         })
         .setOnFinally(() => {});
 
