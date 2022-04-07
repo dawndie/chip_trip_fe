@@ -32,7 +32,7 @@
             {{ $t("shared.cancel") }}
           </button>
           <button class="text-btn text-btn--highlight" @click="done">
-            {{ $t("shared.done") }}
+            {{ $t("shared.accept") }}
           </button>
         </div>
       </div>
@@ -52,8 +52,8 @@ export default {
   props: {
     defaultGuests: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
 
   setup(props, { emit }) {
@@ -64,7 +64,7 @@ export default {
     let babyGuests = ref(0);
 
     const totalGuests = computed(
-      () => grownupGuests.value + kidGuests.value + babyGuests.value
+      () => grownupGuests.value + kidGuests.value + babyGuests.value,
     );
 
     const inputs = [
@@ -107,21 +107,24 @@ export default {
 
     function getDefaultInput() {
       if (props.defaultGuests.grownupGuests) {
-        grownupGuests.value = props.defaultGuests.grownupGuests
+        grownupGuests.value = props.defaultGuests.grownupGuests;
       }
 
       if (props.defaultGuests.kidGuests) {
-        kidGuests.value = props.defaultGuests.kidGuests
+        kidGuests.value = props.defaultGuests.kidGuests;
       }
 
       if (props.defaultGuests.babyGuests) {
-        babyGuests.value = props.defaultGuests.babyGuests
+        babyGuests.value = props.defaultGuests.babyGuests;
       }
     }
 
-    watch(() => props.defaultGuests, () => getDefaultInput())
+    watch(
+      () => props.defaultGuests,
+      () => getDefaultInput(),
+    );
 
-    onMounted(() => getDefaultInput())
+    onMounted(() => getDefaultInput());
 
     return {
       isDialogOpened,

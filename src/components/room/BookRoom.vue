@@ -2,7 +2,8 @@
   <div class="card book-room-card">
     <div class="book-room-card--price">
       <h1 class="d-inline mr-1">
-        {{ defaultPrice.normal_day_price }} {{ $t("shared.currency." + currency) }}
+        {{ defaultPrice.normalDayPrice }}
+        {{ $t("shared.currency." + currency) }}
       </h1>
       <p class="d-inline">/1 {{ $t("shared.night") }}</p>
     </div>
@@ -24,7 +25,10 @@
     <template v-if="detailPrice">
       <div class="d-flex align-items-center justify-content-between mt-2">
         <span>{{ $t("pages.room.normal_day_price") }}</span>
-        <span>{{ defaultPrice.normal_day_price }} {{ $t("shared.currency." + currency) }}</span>
+        <span
+          >{{ defaultPrice.normalDayPrice }}
+          {{ $t("shared.currency." + currency) }}</span
+        >
       </div>
 
       <div class="d-flex align-items-center justify-content-between mt-2">
@@ -34,7 +38,10 @@
 
       <div class="d-flex align-items-center justify-content-between mt-2">
         <span>{{ $t("pages.room.weekend_price") }}</span>
-        <span>{{ defaultPrice.weekend_price }} {{ $t("shared.currency." + currency) }}</span>
+        <span
+          >{{ defaultPrice.weekendPrice }}
+          {{ $t("shared.currency." + currency) }}</span
+        >
       </div>
 
       <div class="d-flex align-items-center justify-content-between mt-2">
@@ -54,7 +61,10 @@
           ><strong>{{ $t("pages.room.total") }}</strong></span
         >
         <span
-          ><strong>{{ detailPrice.totalPrice }} {{ $t("shared.currency." + currency) }}</strong></span
+          ><strong
+            >{{ detailPrice.totalPrice }}
+            {{ $t("shared.currency." + currency) }}</strong
+          ></span
         >
       </div>
     </template>
@@ -77,7 +87,10 @@ import { useStore } from "vuex";
 import GuestPicker from "@/components/shared/GuestPicker";
 
 import { i18n } from "@/plugins/i18n/i18n";
-import { convertCurrency, getBusinessDatesCount } from "@/helpers/sharedHelpers.js";
+import {
+  convertCurrency,
+  getBusinessDatesCount,
+} from "@/helpers/sharedHelpers.js";
 import { ElNotification } from "element-plus";
 
 export default {
@@ -92,12 +105,12 @@ export default {
     },
     roomId: {
       type: [String, Number],
-      default: ""
+      default: "",
     },
     currency: {
       type: String,
-      default: 'usd'
-    }
+      default: "usd",
+    },
   },
 
   emits: ["book-room"],
@@ -134,36 +147,44 @@ export default {
     }
 
     let detailPrice = computed(() => {
-      if (dateRangeSearch.value.length != 2) return false
+      if (dateRangeSearch.value.length != 2) return false;
 
-      const defaultDayPrice = props.defaultPrice.normal_day_price
-      const defaultWeekendPrice = props.defaultPrice.weekend_price
+      const defaultDayPrice = props.defaultPrice.normalDayPrice;
+      const defaultWeekendPrice = props.defaultPrice.weekendPrice;
 
-      const totalDays = Math.floor(
-        (new Date(dateRangeSearch.value[1]) - new Date(dateRangeSearch.value[0])) /
-          (1000*60*60*24)
-      ) + 1
-      const workDays = getBusinessDatesCount(new Date(dateRangeSearch.value[0]), new Date(dateRangeSearch.value[1]))
+      const totalDays =
+        Math.floor(
+          (new Date(dateRangeSearch.value[1]) -
+            new Date(dateRangeSearch.value[0])) /
+            (1000 * 60 * 60 * 24),
+        ) + 1;
+      const workDays = getBusinessDatesCount(
+        new Date(dateRangeSearch.value[0]),
+        new Date(dateRangeSearch.value[1]),
+      );
 
       return {
         totalDays,
         workDays,
         weekendDays: totalDays - workDays,
-        totalPrice: workDays * defaultDayPrice + (totalDays - workDays) * defaultWeekendPrice
-      }
-    })
+        totalPrice:
+          workDays * defaultDayPrice +
+          (totalDays - workDays) * defaultWeekendPrice,
+      };
+    });
 
     onMounted(() => getDefaultInput());
 
     const router = useRouter();
 
-    const store = useStore()
+    const store = useStore();
 
-    let isLoggedIn = computed(() => store.getters.isLoggedIn)
+    let isLoggedIn = computed(() => store.getters.isLoggedIn);
 
     function bookRoom() {
       if (!isLoggedIn.value) {
-        if (localStorage.getItem('token') != "") store.commit('changeToken', localStorage.getItem('token'))
+        if (localStorage.getItem("token") != "")
+          store.commit("changeToken", localStorage.getItem("token"));
 
         ElNotification({
           title: "Please log in first",
@@ -171,7 +192,7 @@ export default {
           type: "error",
         });
 
-        return
+        return;
       }
 
       context.emit("book-room");
@@ -190,7 +211,11 @@ export default {
     }
 
     let notHasAllPropertiesToBook = computed(() => {
-      if (dateRangeSearch.value.length == 0 || !guestSearch.value.totalGuests || !props.roomId) {
+      if (
+        dateRangeSearch.value.length == 0 ||
+        !guestSearch.value.totalGuests ||
+        !props.roomId
+      ) {
         return true;
       }
       return false;

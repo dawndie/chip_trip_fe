@@ -30,18 +30,25 @@
         </div>
         <div class="ml-2">
           <div class="d-flex align-items-center">
-            <h5 class="m-0">{{ review.user_name }}</h5>
+            <h5 class="m-0">
+              {{ review.user_first_name }} {{ review.user_last_name }}
+            </h5>
 
             <div class="rating ml-2">
-              <font-awesome-icon icon="star" color="#ffcd3c" />
-              {{ review.score }}
+              <el-rate
+                v-model="review.review_score"
+                disabled
+                show-score
+                text-color="#ff9900"
+                score-template="{value} points"
+              />
             </div>
           </div>
-          <!-- <small>{{ convertDate(review.created_at, 'T') }}</small> -->
+          <small>{{ convertDate(review.review_updated_at, "T") }}</small>
         </div>
       </div>
       <div>
-        <p class="m-0">{{ review.comment }}</p>
+        <p class="m-0">{{ review.review_comment }}</p>
       </div>
     </div>
   </template>

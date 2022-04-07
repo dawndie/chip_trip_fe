@@ -5,6 +5,7 @@ export default {
     signup: "Đăng ký",
     cancel: "Hủy",
     done: "Thanh toán thành công",
+    accept: "Chấp nhận",
     pendding: "Chờ thanh toán",
     or: "hoặc",
     filter: "Sắp xếp",
