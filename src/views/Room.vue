@@ -146,9 +146,7 @@ export default {
 
     let imageArray = ref([]);
     function transformImageArray() {
-      imageArray.value = detailedRoom.value.overviews_attributes.map(
-        (e) => e.image,
-      );
+      imageArray.value = detailedRoom.value.photos.map((e) => e.url);
     }
 
     async function onGetPlaceById() {
@@ -201,14 +199,14 @@ export default {
 
     async function onGetCheckBookmark() {
       const reqBody = {
-        place_id: roomId,
+        placeId: roomId,
       };
 
       const handler = new ApiHandler()
         .setData(reqBody)
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          isBookmarked.value = data.data;
+          isBookmarked.value = data.data.data.isBookmarked;
         })
         .setOnFinally(() => {});
 
@@ -260,7 +258,7 @@ export default {
       loadBookmark.value = true;
 
       const reqBody = {
-        place_id: roomId,
+        placeId: roomId,
       };
 
       const handler = new ApiHandler()

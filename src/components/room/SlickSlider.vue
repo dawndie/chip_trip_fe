@@ -9,7 +9,13 @@
     </button>
     <div class="items-container">
       <div class="slick-slider--items d-flex align-items-center">
-        <img v-for="(img, i) in imgArray" :key="i" :src="img" alt="" />
+        <img
+          class="slide-img"
+          v-for="(img, i) in imgArray"
+          :key="i"
+          :src="img"
+          alt=""
+        />
       </div>
     </div>
     <button
@@ -42,7 +48,7 @@ export default {
     width: {
       type: [String, Number],
       default: "100%",
-    }
+    },
   },
 
   setup(props) {
@@ -64,53 +70,57 @@ export default {
             (img) =>
               new Promise((resolve) => {
                 img.onload = img.onerror = resolve;
-              })
-          )
+              }),
+          ),
       ).then(() => {
         // Get image width
         imgArrayWidths.value = imgs.map((e) => {
           return e.width;
         });
-        lastImgWidth.value = imgArrayWidths.value[imgArrayWidths.value.length - 1];
-        getLengthLeftToLastImg()
+        lastImgWidth.value =
+          imgArrayWidths.value[imgArrayWidths.value.length - 1];
+        getLengthLeftToLastImg();
       });
     }
 
     function getTotalScreenLength() {
       if (typeof props.width === "number") {
-        return props.width
+        return props.width;
       } else {
         const windowWidth = window.screen.width;
-        const sliderWidth = Number(props.width.replace("%", ""))
+        const sliderWidth = Number(props.width.replace("%", ""));
 
         if (isNaN(sliderWidth)) {
-          throw new Error("Expression is not supported.")
+          throw new Error("Expression is not supported.");
         } else {
-          return windowWidth*sliderWidth/100;
+          return (windowWidth * sliderWidth) / 100;
         }
       }
     }
 
     function convertWidthProp() {
       if (typeof props.width === "number") {
-        return `${props.width}px`
+        return `${props.width}px`;
       } else {
-        return props.width
+        return props.width;
       }
     }
 
-    watch(() => props.imgArray, () => {
-      init()
-    })
+    watch(
+      () => props.imgArray,
+      () => {
+        init();
+      },
+    );
 
     onMounted(() => {
-      init()
+      init();
     });
 
     async function init() {
-      if (!props.imgArray.length) return
+      if (!props.imgArray.length) return;
 
-      const sliderWidth = convertWidthProp()
+      const sliderWidth = convertWidthProp();
 
       const slick = document.getElementById(`${props.slickId}`);
       slick.style.width = sliderWidth;
@@ -120,28 +130,30 @@ export default {
       totalOnScreenItemsLength.value = getTotalScreenLength();
 
       const sliderItems = document.getElementsByClassName(
-        "slick-slider--items"
+        "slick-slider--items",
       )[0];
-      await nextTick()
+      await nextTick();
       const images = sliderItems.children;
       getImgWidth([...images]);
     }
 
-    let lengthLeftToLastImg = ref(0)
+    let lengthLeftToLastImg = ref(0);
 
-    function getLengthLeftToLastImg () {
+    function getLengthLeftToLastImg() {
       const leftImg = imgArrayWidths.value.filter(
-        (e, i) => i >= currentImg.value
+        (e, i) => i >= currentImg.value,
       );
       const length = leftImg.reduce((sum, w) => sum + w, 0);
-      lengthLeftToLastImg.value = length + (leftImg.length - 1) * IMAGE_MARGIN * 2;
+      lengthLeftToLastImg.value =
+        length + (leftImg.length - 1) * IMAGE_MARGIN * 2;
     }
 
     let currentImg = ref(0);
 
     let isReachedHead = computed(() => currentImg.value == 0);
     let isReachedTail = computed(() => {
-      if (lengthLeftToLastImg.value < totalOnScreenItemsLength.value) return true;
+      if (lengthLeftToLastImg.value < totalOnScreenItemsLength.value)
+        return true;
       return false;
     });
 
@@ -153,7 +165,7 @@ export default {
         imgArrayWidths.value[currentImg.value - 1] + 2 * IMAGE_MARGIN;
       slickItems.style.transform = `translateX(${xPosition.value}px)`;
       currentImg.value -= 1;
-      getLengthLeftToLastImg()
+      getLengthLeftToLastImg();
     }
 
     function next() {
@@ -164,7 +176,7 @@ export default {
         imgArrayWidths.value[currentImg.value] + 2 * IMAGE_MARGIN;
       slickItems.style.transform = `translateX(${xPosition.value}px)`;
       currentImg.value += 1;
-      getLengthLeftToLastImg()
+      getLengthLeftToLastImg();
     }
 
     return {
@@ -176,3 +188,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.slide-img {
+  /* padding-left: 150px; */
+}
+</style>

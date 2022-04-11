@@ -11,7 +11,7 @@ axiosInstance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     const token = store.state.token || localStorage.getItem("token");
-    config.headers.Authorization = token;
+    config.headers.Authorization = "Bearer " + token;
 
     return config;
   },
