@@ -13,6 +13,7 @@
           :items="[{ name: detailedRoom.address }]"
         ></place-breadcrumb>
         <room-description
+          @create-bookmark="onPostNewBookmark"
           :loadBookmark="loadBookmark"
           :room="detailedRoom"
           :isBookmarked="isBookmarked"
@@ -221,13 +222,14 @@ export default {
       loadBookmark.value = true;
 
       const reqBody = {
-        place_id: roomId,
+        placeId: roomId,
       };
 
       const handler = new ApiHandler()
         .setData(reqBody)
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
+          console.log(data);
           if (data.isError()) {
             ElNotification({
               title: "Oh no! There's an error bookmarking this room",
@@ -255,7 +257,7 @@ export default {
     }
 
     async function onDeleteBookmark() {
-      loadBookmark.value = true;
+      loadBookmark.value = false;
 
       const reqBody = {
         placeId: roomId,

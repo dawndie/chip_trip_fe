@@ -184,7 +184,7 @@ export default {
 
     watch(
       () => bookType,
-      () => getBookedRoomList()
+      () => getBookedRoomList(),
     );
 
     onMounted(() => {

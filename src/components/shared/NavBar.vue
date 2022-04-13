@@ -31,7 +31,7 @@
           class="searchbar--datepicker"
         ></el-date-picker>
 
-        <guest-picker v-if="!checkIsXsScreen" @pick-guest="pickGuest" />
+        <!-- <guest-picker v-if="!checkIsXsScreen" @pick-guest="pickGuest" /> -->
 
         <button class="btn btn--primary" @click="search">
           <i class="el-input__icon el-icon-search btn-icon"></i>
@@ -80,7 +80,7 @@ import { isMdOrAboveScreen, isXsScreen } from "@/helpers/mediaHelpers";
 
 export default {
   components: {
-    GuestPicker,
+    // GuestPicker,
     SettingPicker,
     LoggedMemberPicker,
   },

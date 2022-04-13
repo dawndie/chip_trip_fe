@@ -60,7 +60,7 @@ export default {
     let isReachedTail = computed(
       () =>
         Math.abs(xPosition.value) >=
-        totalSlickItemsLength - totalOnScreenItemsLength
+        totalSlickItemsLength - totalOnScreenItemsLength,
     );
 
     function prev() {

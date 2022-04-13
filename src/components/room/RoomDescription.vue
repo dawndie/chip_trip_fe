@@ -4,7 +4,12 @@
 
     <div class="d-flex align-items-center">
       <div v-loading="loadBookmark">
-        <el-button type="danger" round v-if="!isBookmarked" @click="bookmark">
+        <el-button
+          type="danger"
+          round
+          v-if="!isBookmarked"
+          @click="$emit('createBookmark')"
+        >
           {{ $t("shared.bookmark") }}
           <font-awesome-icon icon="heart" class="ml-1" />
         </el-button>
@@ -55,6 +60,7 @@
 import { ref, computed } from "vue";
 
 export default {
+  emits: ["createBookmark"],
   props: {
     room: {
       type: Object,

@@ -57,7 +57,7 @@ export default {
       () => isLoggedIn.value,
       () => {
         redirectUnauthorizedUser();
-      }
+      },
     );
 
     onMounted(() => {

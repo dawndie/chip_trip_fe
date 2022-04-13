@@ -32,19 +32,7 @@ export default {
   components: { BookmarkPreview },
 
   setup() {
-    let list = ref([
-      {
-        price: "200.000",
-        checkin: "2012-01-26T13:51:50.417-07:00",
-        checkout: "2012-01-26T13:51:50.417-07:00",
-        place_price: 1000000,
-        place_id: 13,
-        place_name: "Homestay Cổ Am",
-        place_address: "Hà nội",
-        place_image: "@/assets/images/1.png",
-        status: "pendding",
-      },
-    ]);
+    let list = ref([{}]);
 
     let loadBookmark = ref(false);
 
@@ -54,7 +42,7 @@ export default {
       const handler = new ApiHandler()
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          list.value = data.data;
+          list.value = data.data.data.list;
         })
         .setOnFinally(() => {
           loadBookmark.value = false;
@@ -73,7 +61,7 @@ export default {
 
     async function onDeleteBookmark(roomId) {
       const reqBody = {
-        place_id: roomId,
+        placeId: roomId,
       };
 
       const handler = new ApiHandler()

@@ -1,4 +1,6 @@
 <template>
+  <el-avatar :size="50" :src="circleUrl"></el-avatar>
+
   <div
     class="setting-picker logged-member-picker ml-2"
     :class="checkIsMdOrAboveScreen ? '' : 'setting-picker--mobile'"
@@ -7,7 +9,7 @@
       class="setting-picker-btn d-flex align-items-center"
       @click="toggleDialog"
     >
-      <b class="m-0">{{ user.name }}</b>
+      <b class="m-0 ml-1">{{ user.firstName + " " + user.lastName }}</b>
       <i class="el-icon-arrow-down ml-1 mr-1"></i>
     </div>
     <transition name="slide-fade" mode="out-in">
@@ -44,13 +46,16 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
-
+import { ref } from "vue";
 import useDialog from "@/composables/useDialog.js";
 import { i18n } from "@/plugins/i18n/i18n";
 import { isMdOrAboveScreen } from "@/helpers/mediaHelpers";
 
 export default {
   setup() {
+    const circleUrl = ref(
+      "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+    );
     const items = [
       {
         link: { name: "User" },
@@ -82,6 +87,7 @@ export default {
       checkIsMdOrAboveScreen,
       signout,
       user,
+      circleUrl,
     };
   },
 };
