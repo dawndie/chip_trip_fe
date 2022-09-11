@@ -20,8 +20,8 @@
       :md="8"
       class="mb-1"
     >
-      <font-awesome-icon icon="angle-right" class="mr-1" />
-      <span>{{ fac.name }}</span>
+      <font-awesome-icon icon="award" class="mr-1" />
+      <span style="font-weight: normal">{{ fac.name }}</span>
     </el-col>
   </el-row>
 </template>

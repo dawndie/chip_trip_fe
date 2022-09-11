@@ -4,8 +4,8 @@
       <el-col :span="24" :md="12">
         <book-room-input :bookRoom="bookRoom"></book-room-input>
       </el-col>
-      <el-col :md="2" :lg="4"></el-col>
-      <el-col :span="24" :md="10" :lg="8">
+      <el-col :md="2" :lg="2"></el-col>
+      <el-col :span="24" :md="10" :lg="10">
         <book-room-detail></book-room-detail>
       </el-col>
     </el-row>
@@ -20,10 +20,10 @@ import { useStore } from "vuex";
 import BookRoomInput from "@/components/book/BookRoomInput";
 import BookRoomDetail from "@/components/book/BookRoomDetail";
 
-import bookApi from '@/api/services/bookApi.js'
-import placeApi from '@/api/services/placeApi.js'
-import ApiHandler from '@/helpers/ApiHandler'
-import ResponseHelper from '@/helpers/ResponseHelper'
+import bookApi from "@/api/services/bookApi.js";
+import placeApi from "@/api/services/placeApi.js";
+import ApiHandler from "@/helpers/ApiHandler";
+import ResponseHelper from "@/helpers/ResponseHelper";
 import { ElNotification } from "element-plus";
 
 export default {
@@ -34,8 +34,8 @@ export default {
     const router = useRouter();
     const route = useRoute();
 
-    let currentRoom = computed(() => store.state.currentRoom)
-    let roomId = computed(() => route.query.roomId)
+    let currentRoom = computed(() => store.state.currentRoom);
+    let roomId = computed(() => route.query.roomId);
 
     onMounted(() => {
       if (!currentRoom.value.name && !roomId.value) {
@@ -43,52 +43,55 @@ export default {
           name: "Home",
         });
       } else if (roomId.value && !currentRoom.value.name) {
-        onGetPlaceById()
+        onGetPlaceById();
       }
     });
 
     async function onGetPlaceById() {
       const handler = new ApiHandler()
-                          .setData({id: roomId.value})
-                          .setOnResponse(rawData => {
-                            const data = new ResponseHelper(rawData)
-                            store.commit("changeCurrentRoom", data.data)
-                          })
-                          .setOnFinally(() => {})
-      
-      const onRequest = async () => {
-        return placeApi.getPlaceById(handler.data)
-      }
+        .setData({ id: roomId.value })
+        .setOnResponse((rawData) => {
+          console.log(rawData);
+          const data = new ResponseHelper(rawData);
+          console.log(data.data.data);
+          // console.log("is is" + JSON.parse(data.data));
+          store.commit("changeCurrentRoom", data.data.data);
+        })
+        .setOnFinally(() => {});
 
-      await handler.setOnRequest(onRequest).execute()
+      const onRequest = async () => {
+        return placeApi.getPlaceById(handler.data);
+      };
+
+      await handler.setOnRequest(onRequest).execute();
     }
 
     async function bookRoom(reqBody) {
       const handler = new ApiHandler()
-                          .setData(reqBody)
-                          .setOnResponse(rawData => {
-                            ElNotification({
-                              title: "Booked successfully!",
-                              message: "Please check your booked list",
-                              type: "success",
-                            });
+        .setData(reqBody)
+        .setOnResponse((rawData) => {
+          ElNotification({
+            title: "Booked successfully!",
+            message: "Please check your booked list",
+            type: "success",
+          });
 
-                            router.push({
-                              name: "Home",
-                            });
-                          })
-                          .setOnFinally(() => {})
-      
+          // router.push({
+          //   name: "Home",
+          // });
+        })
+        .setOnFinally(() => {});
+
       const onRequest = async () => {
-        return bookApi.postNewBooking(handler.data)
-      }
+        return bookApi.postNewBooking(handler.data);
+      };
 
-      await handler.setOnRequest(onRequest).execute()
+      await handler.setOnRequest(onRequest).execute();
     }
 
     return {
-      bookRoom
-    }
+      bookRoom,
+    };
   },
 };
 </script>

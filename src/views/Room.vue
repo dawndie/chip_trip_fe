@@ -16,6 +16,7 @@
           @create-bookmark="onPostNewBookmark"
           :loadBookmark="loadBookmark"
           :room="detailedRoom"
+          :isLoggedIn="isLoggedIn"
           :isBookmarked="isBookmarked"
           :removeBookmark="onDeleteBookmark"
         ></room-description>
@@ -59,14 +60,11 @@
 
       <div class="row" v-loading="loadRecommendedRoom">
         <div
-          v-for="item in recommendedList"
+          v-for="item in recommendedList.data"
           :key="item.id"
           class="col-xs-6 col-md-3 col-lg-20"
         >
-          <room-preview
-            :item="item"
-            :currency="detailedRoom.policy_attributes.currency"
-          />
+          <room-preview :item="item" :currency="USD" />
         </div>
       </div>
     </div>
@@ -157,9 +155,7 @@ export default {
         .setData({ id: roomId })
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          console.log(data.data.data);
           detailedRoom.value = data.data.data;
-          console.log(detailedRoom.value.__amenities__);
           transformImageArray();
         })
         .setOnFinally(() => {
@@ -180,7 +176,6 @@ export default {
         .setData({ id: roomId })
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          console.log(data.data);
           roomReviews.value = data.data.data;
         })
         .setOnFinally(() => {});
@@ -207,7 +202,17 @@ export default {
         .setData(reqBody)
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          isBookmarked.value = data.data.data.isBookmarked;
+          if (data.data) {
+            isBookmarked.value = data.data.data.isBookmarked;
+          }
+          console.log(data);
+          if (data.error) {
+            ElNotification({
+              title: "Time out",
+              message: data.errorMesssage.message,
+              type: "error",
+            });
+          }
         })
         .setOnFinally(() => {});
 
@@ -229,7 +234,6 @@ export default {
         .setData(reqBody)
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          console.log(data);
           if (data.isError()) {
             ElNotification({
               title: "Oh no! There's an error bookmarking this room",

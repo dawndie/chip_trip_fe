@@ -49,7 +49,7 @@ export default {
       baby_warning: "Below age of 2",
     },
     footer: {
-      info1: "Fall 2122I_INT3139 Assignment by trannguyen61",
+      info1: "KLTN Võ Lương Bằng",
     },
     options: {
       "easy_cancel": "Easy canceling",

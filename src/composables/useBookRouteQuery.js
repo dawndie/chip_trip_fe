@@ -6,7 +6,7 @@ export default function () {
   const route = useRoute();
 
   let totalGuestsText = computed(
-    () => `${route.query.totalGuests} ${i18n.global.t("shared.guest_name")}`
+    () => `${route.query.totalGuests} ${i18n.global.t("shared.guest_name")}`,
   );
   let grownupGuests = computed(() => route.query.grownupGuests);
   let kidGuests = computed(() => route.query.kidGuests);
@@ -19,8 +19,8 @@ export default function () {
   let dateDiff = computed(() =>
     Math.floor(
       (new Date(checkout.value) - new Date(checkin.value)) /
-        (1000 * 60 * 60 * 24)
-    )
+        (1000 * 60 * 60 * 24),
+    ),
   );
 
   return {

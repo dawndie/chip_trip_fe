@@ -31,26 +31,6 @@
       </router-link>
     </slick-carousel>
 
-    <template v-if="isLoggedIn">
-      <div class="section-title mb-3">
-        <el-row :gutter="10" class="d-flex align-items-center">
-          <el-col :md="12">
-            <h3 class="m-0">{{ $t("shared.recommend") }}</h3>
-          </el-col>
-        </el-row>
-      </div>
-
-      <div class="row" v-loading="loadRecommendedRoom">
-        <div
-          v-for="item in recommendedList"
-          :key="item.id"
-          class="col-xs-6 col-md-3 col-lg-20"
-        >
-          <room-preview :item="item" :currency="currency" />
-        </div>
-      </div>
-    </template>
-
     <div class="section-title mb-3">
       <el-row :gutter="10" class="d-flex align-items-center">
         <el-col :md="12">
@@ -106,6 +86,35 @@
         @update:current-page="changePage"
       ></el-pagination>
     </div>
+    <template v-if="isLoggedIn">
+      <div class="section-title mb-3">
+        <el-row :gutter="10" class="d-flex align-items-center">
+          <el-col :md="12">
+            <h3 class="m-0">{{ $t("shared.recommend") }}</h3>
+          </el-col>
+        </el-row>
+      </div>
+
+      <!-- <div class="row" v-loading="loadRecommendedRoom">
+        <div
+          v-for="item in recommendedList"
+          :key="item.id"
+          class="col-xs-6 col-md-3 col-lg-20"
+        >
+          <room-preview :item="item" :currency="currency" />
+        </div>
+      </div> -->
+
+      <div class="row" v-loading="loadRoom">
+        <div
+          v-for="item in recommendedList.data"
+          :key="item.id"
+          class="col-xs-6 col-md-3 col-lg-20"
+        >
+          <room-preview :item="item" :currency="currency" />
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -116,6 +125,7 @@ import { useRoute } from "vue-router";
 
 import SlickCarousel from "@/components/shared/SlickCarousel.vue";
 import RoomPreview from "@/components/search/RoomPreview.vue";
+import RoomPreviewCopy from "@/components/search/RoomPreviewCopy.vue";
 import FilterBar from "@/components/search/FilterBar.vue";
 
 import { INTERESTING_PLACES } from "@/consts/mediaConsts.js";
@@ -138,6 +148,7 @@ export default {
   setup() {
     const store = useStore();
     const route = useRoute();
+    let userId = computed(() => store.state.userId);
 
     let currency = computed(() => store.state.currency);
 
@@ -156,9 +167,16 @@ export default {
     let checkIsMdOrAboveScreen = computed(() => isMdOrAboveScreen(window));
 
     let filterOption = ref("");
-
+    // let mock = ref([
+    //   {
+    //     id: 1,
+    //     name: "Căn Hộ Duplex Indochina 1BR View Hà Nội",
+    //     photos: [{ url: "../../" }],
+    //   },
+    // ]);
     let roomList = ref([]);
     let totalPage = ref(1);
+    let recommendedList = ref([]);
 
     let loadRoom = ref(false);
     let loadRecommendedRoom = ref(false);
@@ -167,6 +185,9 @@ export default {
 
     let page = ref(1);
     let place = ref(route.query.place);
+    let checkin = ref(route.query.checkin);
+    let checkout = ref(route.query.checkout);
+    let totalGuests = ref(route.query.totalGuests);
 
     watch(
       () => route.query.place,
@@ -183,12 +204,12 @@ export default {
       },
     );
 
-    let locationSearch = ref(route.query.l);
+    let locationSearch = ref(route.query.place);
 
     watch(
-      () => route.query.l,
+      () => route.query.place,
       () => {
-        locationSearch.value = route.query.l;
+        locationSearch.value = route.query.place;
         if (!locationSearch.value) return;
 
         page.value = 1;
@@ -208,7 +229,7 @@ export default {
         .setOnFinally(() => {});
 
       const onRequest = async () => {
-        return placeApi.getTotalNumberOfPlaceInCity(handler.data);
+        // return placeApi.getTotalNumberOfPlaceInCity(handler.data);
       };
 
       await handler.setOnRequest(onRequest).execute();
@@ -217,9 +238,11 @@ export default {
     async function onGetPlaceByCity() {
       useFilter.value = false;
       loadRoom.value = true;
-
       const handler = new ApiHandler()
-        .setData({ place: place.value, page: page.value })
+        .setData({
+          place: place.value,
+          page: page.value,
+        })
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
           roomList.value = data.data;
@@ -242,11 +265,18 @@ export default {
       loadRoom.value = true;
 
       const handler = new ApiHandler()
-        .setData({ search: locationSearch.value, page: page.value })
+        .setData({
+          search: locationSearch.value,
+          page: page.value,
+          checkin: checkin.value,
+          checkout: checkout.value,
+          totalGuests: totalGuests.value,
+        })
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          roomList.value = data.data.data;
-          totalPage.value = Math.ceil(data.data.count / 20);
+          const outputData = data.data.data;
+          roomList.value = outputData.data;
+          totalPage.value = outputData.lastPage;
         })
         .setOnFinally(() => {
           loadRoom.value = false;
@@ -260,23 +290,23 @@ export default {
     }
 
     let isLoggedIn = computed(() => store.getters.isLoggedIn);
-    let recommendedList = ref([]);
 
     async function onGetRecommendByCity() {
       loadRecommendedRoom.value = true;
-
       const handler = new ApiHandler()
         .setData({ city: place.value })
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
           recommendedList.value = data.data;
+          console.log(recommendedList.value);
         })
         .setOnFinally(() => {
           loadRecommendedRoom.value = false;
         });
 
       const onRequest = async () => {
-        return placeApi.getRecommendByCity(handler.data);
+        console.log(handler.data);
+        return placeApi.getRecommendById(handler.data);
       };
 
       await handler.setOnRequest(onRequest).execute();
@@ -367,10 +397,9 @@ export default {
         onGetSearchByNameOrAdd();
       } else {
         onGetTotalNumberOfPlaceInCity();
-
-        if (isLoggedIn.value) {
-          onGetRecommendByCity();
-        }
+      }
+      if (isLoggedIn.value) {
+        onGetRecommendByCity();
       }
     });
 

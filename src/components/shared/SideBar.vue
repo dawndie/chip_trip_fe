@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import LoggedMemberPicker from '@/components/shared/LoggedMemberPicker'
+import LoggedMemberPicker from "@/components/shared/LoggedMemberPicker";
 import SettingPicker from "./SettingPicker.vue";
 
 export default {

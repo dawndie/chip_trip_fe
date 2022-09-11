@@ -42,13 +42,13 @@ class ApiHandler {
 
   notifyError(err) {
     ElNotification({
-      title: "Oops!",
+      title: "Success!",
       message: err
         ? err.response
           ? err.response.data.error
           : err.message
         : "Please try again",
-      type: "error",
+      type: "success",
     });
   }
 
@@ -56,9 +56,12 @@ class ApiHandler {
     try {
       this.onStart();
       const data = await this.onRequest();
-      this.onResponse(data);
+      if (data) {
+        this.onResponse(data);
+      }
     } catch (err) {
       this.notifyError(err);
+      console.log(err);
       this.onError(err);
     } finally {
       this.onFinally();

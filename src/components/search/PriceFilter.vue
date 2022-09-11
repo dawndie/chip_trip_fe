@@ -23,7 +23,7 @@
         class="price-slider"
         v-model="priceRange"
         range
-        :max="100"
+        :max="1000"
         :step="5"
       />
       <div class="d-flex align-items-center">
@@ -64,20 +64,20 @@ export default {
   emits: ["choose-filters"],
 
   setup(props, context) {
-    let priceRange = ref([0, 100]);
+    let priceRange = ref([0, 1000]);
 
     function cancel() {
-      priceRange.value = [0, 100];
+      priceRange.value = [0, 1000];
 
-      done()
+      done();
     }
     function done() {
-      console.log(priceRange.value, '---- range')
+      console.log(priceRange.value, "---- range");
       context.emit("choose-filters", priceRange.value);
     }
 
     let choseFilters = computed(
-      () => priceRange.value[0] > 0 || priceRange.value[1] < 100
+      () => priceRange.value[0] > 0 || priceRange.value[1] < 1000,
     );
 
     let title = computed(() => {

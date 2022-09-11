@@ -48,7 +48,7 @@
         </div>
       </div>
       <div>
-        <p class="m-0">{{ review.review_comment }}</p>
+        <p style="font-weight: normal" class="m-0">{{ review.review_comment }}</p>
       </div>
     </div>
   </template>
@@ -101,11 +101,11 @@ export default {
         getBookedRoomList();
         return;
       }
+      if (!bookedList.value) {
+        return;
+      }
 
-      return (
-        isLoggedIn.value &&
-        bookedList.value.map((e) => e.place_id).includes(props.roomId)
-      );
+      return isLoggedIn.value;
     });
 
     watch(

@@ -2,7 +2,7 @@
   <div class="room-preview mb-5">
     <router-link :to="{ name: 'Room', query: { id: item.id } }">
       <div class="img-wrap">
-        <img :src="`${item.image}`" alt="" />
+        <img :src="`${item.photos[0].url}`" alt="" />
       </div>
     </router-link>
     <div
@@ -14,32 +14,37 @@
         mt-1
       "
     >
-      <small>{{
-        `${$t("shared.type." + item.place_type)} - ${
-          item.room_attributes.num_of_bedroom
+      <small style="font-weight: normal">{{
+        `${$t("shared.type." + item.placeType.name)} - ${
+          item.roomAttribute.numOfBedroom
         } ${$t("shared.bedroom")}`
       }}</small>
-      <div class="rating" v-if="item.ratings.length">
+      <!-- <div class="rating" v-if="item.ratings.length">
         <font-awesome-icon icon="star" color="#ffcd3c" />
         {{ item.rating }}
         <small>({{ item.rated_by }})</small>
-      </div>
+      </div> -->
     </div>
     <router-link to="#">
-      <div class="room-preview--title">{{ item.name }}</div>
+      <div style="font-weight: normal" class="room-preview--title">
+        <i style="color: red" class="el-icon-s-home"></i>
+        {{ item.name }}
+      </div>
     </router-link>
     <div>
-      <small>{{ item.address }}</small>
+      <!-- <small style="font-weight: normal">{{ item.address }}</small> -->
     </div>
     <strong class="room-preview--price">
       <small
         >{{
-          `${item.schedule_price_attributes.normal_day_price}${$t(
-            "shared.currency." + item.policy_attributes.currency,
-          )}/${$t("shared.night")}`
+          new Intl.NumberFormat("de-DE", {
+            style: "currency",
+            currency: "VND",
+          }).format(item.schedulePriceAttribute.normalDayPrice)
         }}
       </small>
     </strong>
+    <small style="font-weight: normal">{{ "/" + $t("shared.night") }}</small>
   </div>
 </template>
 

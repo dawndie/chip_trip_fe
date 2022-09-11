@@ -12,9 +12,10 @@ import {
   DELETE_BOOKMARK,
   BOOKMARK,
   RECOMMENDER,
-  GET_RECOMMEND_BY_CITY,
+  GET_RECOMMEND_BY_ID,
   GET_SEARCH_BY_NAME_OR_ADD,
   GET_FILTER,
+  SUGGEST_PLACE,
 } from "../baseApi";
 
 export default {
@@ -45,20 +46,33 @@ export default {
   getUserBookmark() {
     return axiosInstance.get(BOOKMARK);
   },
-  getRecommendByCity({ city, num_rec = 5 }) {
-    return axiosInstance.get(`${GET_RECOMMEND_BY_CITY}/${city}`, {
+  getRecommendById({ id = 7, num_rec = 5 }) {
+    return axiosInstance.get(`${GET_RECOMMEND_BY_ID}/${id}`, {
       params: { num_rec },
     });
   },
   getRecommendByPlace({ id, num_rec = 5 }) {
     return axiosInstance.get(`${RECOMMENDER}/${id}`, { params: { num_rec } });
   },
-  getSearchByNameOrAdd({ search, page }) {
-    return axiosInstance.get(`${GET_SEARCH_BY_NAME_OR_ADD}/${search}/${page}`);
+  getSearchByNameOrAdd({ search, page, checkin, checkout, totalGuests }) {
+    let url = `${GET_SEARCH_BY_NAME_OR_ADD}/${search}/${page}`;
+    if (checkin) {
+      url += `/${checkin}`;
+    }
+    if (checkout) {
+      url += `/${checkout}`;
+    }
+    if (totalGuests) {
+      url += `/${totalGuests}`;
+    }
+    return axiosInstance.get(url);
   },
   getFilter({ params, city, page = 1 }) {
     return axiosInstance.get(`${GET_FILTER}/${city}/${page}`, {
       params: { ...params },
     });
+  },
+  suggestPlace(query) {
+    return axiosInstance.post(SUGGEST_PLACE, { query });
   },
 };

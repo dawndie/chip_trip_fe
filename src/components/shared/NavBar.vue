@@ -5,14 +5,17 @@
         <router-link :to="{ name: 'Home' }">
           <img
             :src="require('@/assets/images/wallet@2x.png')"
-            width=""
-            height="60"
+            width="170"
+            height=""
           />
         </router-link>
       </div>
       <div class="searchbar">
         <el-input
+          @focus="canToggleSuggestion = true"
+          @blur="canToggleSuggestion = false"
           v-model="locationSearch"
+          @input="suggestPlace"
           :placeholder="$t('shared.navbar.search')"
         >
           <template #prefix>
@@ -31,11 +34,17 @@
           class="searchbar--datepicker"
         ></el-date-picker>
 
-        <!-- <guest-picker v-if="!checkIsXsScreen" @pick-guest="pickGuest" /> -->
+        <guest-picker v-if="!checkIsXsScreen" @pick-guest="pickGuest" />
 
-        <button class="btn btn--primary" @click="search">
+        <!-- <button class="btn btn--primary" @click="search">
           <i class="el-input__icon el-icon-search btn-icon"></i>
-        </button>
+        </button> -->
+        <el-button
+          style="font-weight: bold"
+          @click="search"
+          type="primary"
+          icon="el-icon-search"
+        ></el-button>
       </div>
     </div>
 
@@ -64,6 +73,84 @@
       class="el-icon-menu cursor menu-icon"
       @click="$emit('toggle-sidebar')"
     ></i>
+    <div class="suggestion-container">
+      <el-card
+        v-if="
+          (suggestionList.city || suggestionList.area) && canToggleSuggestion
+        "
+        shadow="always"
+        class="box-card"
+      >
+        <div
+          v-for="city in suggestionList.city"
+          :key="city.id"
+          class="text item suggestion-item"
+          v-on:mousedown="addToSearchInput(city)"
+        >
+          <div class="" style="display: flex">
+            <div>
+              <el-avatar shape="square" :size="50"
+                ><i
+                  style="color: black; font-size: 20px; margin-top: 17px"
+                  class="el-icon-location"
+                ></i>
+              </el-avatar>
+            </div>
+            <div>
+              <p>{{ `${city.name}, Việt Nam` }}</p>
+              <p class="suggestion-description">
+                {{ `${city.total} Địa điểm` }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          v-for="area in suggestionList.area"
+          :key="area.id"
+          class="text item suggestion-item"
+          v-on:mousedown="addToSearchInput(area)"
+        >
+          <div class="" style="display: flex">
+            <div>
+              <el-avatar shape="square" :size="50"
+                ><i
+                  style="color: black; font-size: 20px; margin-top: 17px"
+                  class="el-icon-location"
+                ></i>
+              </el-avatar>
+            </div>
+            <div>
+              <p>{{ `${area.name}, ${area.city.name}, Việt Nam` }}</p>
+              <p class="suggestion-description">
+                {{ `${area.total} Địa điểm` }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          v-for="place in suggestionList.place"
+          :key="place.id"
+          class="text item suggestion-item"
+          v-on:mousedown="addToSearchInput(place)"
+        >
+          <div class="" style="display: flex">
+            <div>
+              <el-avatar shape="square" :size="50"
+                ><i
+                  style="color: black; font-size: 20px; margin-top: 17px"
+                  class="el-icon-location"
+                ></i>
+              </el-avatar>
+            </div>
+            <div>
+              <p>{{ `${place.name}` }}</p>
+              <p class="suggestion-description">{{ `${place.address}` }}</p>
+            </div>
+          </div>
+        </div>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -71,16 +158,16 @@
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-
+import ApiHandler from "@/helpers/ApiHandler";
 import GuestPicker from "./GuestPicker.vue";
 import SettingPicker from "./SettingPicker.vue";
 import LoggedMemberPicker from "@/components/shared/LoggedMemberPicker";
-
+import placeApi from "@/api/services/placeApi.js";
 import { isMdOrAboveScreen, isXsScreen } from "@/helpers/mediaHelpers";
 
 export default {
   components: {
-    // GuestPicker,
+    GuestPicker,
     SettingPicker,
     LoggedMemberPicker,
   },
@@ -88,7 +175,9 @@ export default {
   emits: ["toggle-sidebar"],
 
   setup() {
+    let canToggleSuggestion = ref(false);
     let locationSearch = ref("");
+    let suggestionList = ref({});
     let dateRangeSearch = ref([]);
     let guestSearch = ref({});
 
@@ -100,9 +189,23 @@ export default {
     let checkIsXsScreen = computed(() => isXsScreen(window));
     const router = useRouter();
 
+    async function suggestPlace() {
+      const result = await placeApi.suggestPlace(locationSearch.value);
+      suggestionList.value = result.data.result.data;
+      console.log(suggestionList.value);
+    }
+
+    function addToSearchInput(location) {
+      if (location.city) {
+        locationSearch.value = `${location.name}, ${location.city.name}`;
+      } else {
+        locationSearch.value = location.name;
+      }
+    }
+
     function search() {
       const searchQuery = {
-        ...(locationSearch.value ? { l: locationSearch.value } : {}),
+        ...(locationSearch.value ? { place: locationSearch.value } : {}),
         ...(dateRangeSearch.value
           ? {
               checkin: dateRangeSearch.value[0],
@@ -141,6 +244,10 @@ export default {
       checkIsXsScreen,
       search,
       isLoggedIn,
+      suggestPlace,
+      suggestionList,
+      canToggleSuggestion,
+      addToSearchInput,
     };
   },
 };

@@ -3,7 +3,7 @@ import { i18n } from "@/plugins/i18n/i18n";
 export function getFilterButtonTitle(
   type = "place",
   array = [],
-  firstChosen = ""
+  firstChosen = "",
 ) {
   const arrayLength = array.length;
   if (arrayLength == 1) {
@@ -59,4 +59,21 @@ export function getBusinessDatesCount(startDate, endDate) {
     curDate.setDate(curDate.getDate() + 1);
   }
   return count;
+}
+
+export function sortObject(obj) {
+  var sorted = {};
+  var str = [];
+  var key;
+  for (key in obj) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (obj.hasOwnProperty(key)) {
+      str.push(encodeURIComponent(key));
+    }
+  }
+  str.sort();
+  for (key = 0; key < str.length; key++) {
+    sorted[str[key]] = encodeURIComponent(obj[str[key]]).replace(/%20/g, "+");
+  }
+  return sorted;
 }

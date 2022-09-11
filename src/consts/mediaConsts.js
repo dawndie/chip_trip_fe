@@ -6,8 +6,10 @@ export const BREAKPOINTS = {
 };
 
 export const BANNER_FILENAMES = [
-  // "banner-01.jpeg",
-  "banner-02.jpeg",
+  "banner-04.png",
+  "banner-05.png",
+  "banner-01.png",
+  "banner-03.png",
 ];
 
 export const INTERESTING_PLACES = [
@@ -15,36 +17,36 @@ export const INTERESTING_PLACES = [
     slug: "ha-noi",
     name: "hanoi",
     img: "hanoi.png",
-    link: "hanoi",
+    link: "ha noi",
   },
   {
     slug: "tp-hcm",
     name: "tphcm",
     img: "tphcm.png",
-    link: "hcm",
+    link: "Ho Chi Minh",
   },
   {
     slug: "da-lat",
     name: "dalat",
     img: "dalat.png",
-    link: "dalat",
+    link: "da lat",
   },
   {
     slug: "da-nang",
     name: "danang",
     img: "danang.png",
-    link: "danang",
+    link: "da nang",
   },
   {
     slug: "hoi-an",
     name: "hoian",
     img: "hoian.png",
-    link: "hoian",
+    link: "hoi an",
   },
   {
     slug: "vung-tau",
     name: "vungtau",
     img: "vungtau.png",
-    link: "vungtau",
+    link: "vung tau",
   },
 ];

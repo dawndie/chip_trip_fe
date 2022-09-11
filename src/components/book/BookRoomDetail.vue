@@ -13,7 +13,12 @@
         </span>
       </div>
       <div>
-        <img :src="featuredPhoto" alt="" class="featured-photo" />
+        <img
+          v-if="featuredPhoto"
+          :src="featuredPhoto"
+          alt=""
+          class="featured-photo"
+        />
       </div>
     </div>
 
@@ -108,16 +113,33 @@ import { convertDate, getBusinessDatesCount } from "@/helpers/sharedHelpers";
 export default {
   setup() {
     const store = useStore();
-    // const currentRoom = computed(() => store.state.currentRoom)
-    const name = computed(() => store.state.currentRoom.name);
+    const currentRoom = computed(() => store.state.currentRoom);
+    const name = computed(() => {
+      if (store.state.currentRoom) {
+        console.log(
+          "is store.state" + JSON.stringify(store.state.currentRoom.name),
+        );
+        return store.state.currentRoom.name;
+      }
+      return {};
+    });
     const address = computed(() => store.state.currentRoom.address);
     const currency = computed(() => {
       if (store.state.currentRoom.name)
-        return store.state.currentRoom.policy_attributes.currency;
+        return store.state.currentRoom.policyAttribute.currency;
       else return "usd";
     });
 
-    const featuredPhoto = computed(() => store.state.currentRoom.image);
+    const featuredPhoto = computed(() => {
+      if (store.state.currentRoom.name) {
+        const photoList = store.state.currentRoom.photos;
+        if (photoList[0]) {
+          const photo = photoList[0].url;
+          return photo;
+        }
+      }
+      return "";
+    });
 
     let {
       totalGuestsText,
@@ -136,9 +158,9 @@ export default {
       if (!store.state.currentRoom.name) return {};
 
       const defaultDayPrice =
-        store.state.currentRoom.schedule_price_attributes.normal_day_price;
+        store.state.currentRoom.schedulePriceAttribute.normalDayPrice;
       const defaultWeekendPrice =
-        store.state.currentRoom.schedule_price_attributes.weekend_price;
+        store.state.currentRoom.schedulePriceAttribute.weekendPrice;
 
       const totalDays = dateDiff.value + 1;
       const workDays = getBusinessDatesCount(

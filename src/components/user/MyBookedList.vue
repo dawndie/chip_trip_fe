@@ -83,50 +83,50 @@ export default {
     let loadBookedList = ref(false);
 
     let list = ref([
-      {
-        price: "200.000",
-        checkin: "2012-01-26T13:51:50.417-07:00",
-        checkout: "2012-01-26T13:51:50.417-07:00",
-        place_price: 1231311,
-        place_id: 12,
-        place_name: "Nhà nghỉ Thành Thắng",
-        place_address: "Hà nội",
-        place_image: "../assets/images/1.png",
-        status: "pendding",
-      },
-      {
-        price: "200.000",
-        checkin: "2012-01-26T13:51:50.417-07:00",
-        checkout: "2012-01-26T13:51:50.417-07:00",
-        place_price: 1231311,
-        place_id: 13,
-        place_name: "Khách sạn bên hồ Đà Lạt",
-        place_address: "Hà nội",
-        place_image: "../assets/images/1.png",
-        status: "done",
-      },
-      {
-        price: "200.000",
-        checkin: "2012-01-26T13:51:50.417-07:00",
-        checkout: "2012-01-26T13:51:50.417-07:00",
-        place_price: 1231311,
-        place_id: 13,
-        place_name: "Penthouse Hà Tây",
-        place_address: "Hà nội",
-        place_image: "../assets/images/1.png",
-        status: "pendding",
-      },
-      {
-        price: "200.000",
-        checkin: "2012-01-26T13:51:50.417-07:00",
-        checkout: "2012-01-26T13:51:50.417-07:00",
-        place_price: 1231311,
-        place_id: 13,
-        place_name: "Homestay Cổ Am",
-        place_address: "Hà nội",
-        place_image: "../assets/images/1.png",
-        status: "pendding",
-      },
+      // {
+      //   price: "200.000",
+      //   checkin: "2012-01-26T13:51:50.417-07:00",
+      //   checkout: "2012-01-26T13:51:50.417-07:00",
+      //   place_price: 1231311,
+      //   place_id: 12,
+      //   place_name: "Nhà nghỉ Thành Thắng",
+      //   place_address: "Hà nội",
+      //   place_image: "../assets/images/1.png",
+      //   status: "pendding",
+      // },
+      // {
+      //   price: "200.000",
+      //   checkin: "2012-01-26T13:51:50.417-07:00",
+      //   checkout: "2012-01-26T13:51:50.417-07:00",
+      //   place_price: 1231311,
+      //   place_id: 13,
+      //   place_name: "Khách sạn bên hồ Đà Lạt",
+      //   place_address: "Hà nội",
+      //   place_image: "../assets/images/1.png",
+      //   status: "done",
+      // },
+      // {
+      //   price: "200.000",
+      //   checkin: "2012-01-26T13:51:50.417-07:00",
+      //   checkout: "2012-01-26T13:51:50.417-07:00",
+      //   place_price: 1231311,
+      //   place_id: 13,
+      //   place_name: "Penthouse Hà Tây",
+      //   place_address: "Hà nội",
+      //   place_image: "../assets/images/1.png",
+      //   status: "pendding",
+      // },
+      // {
+      //   price: "200.000",
+      //   checkin: "2012-01-26T13:51:50.417-07:00",
+      //   checkout: "2012-01-26T13:51:50.417-07:00",
+      //   place_price: 1231311,
+      //   place_id: 13,
+      //   place_name: "Homestay Cổ Am",
+      //   place_address: "Hà nội",
+      //   place_image: "../assets/images/1.png",
+      //   status: "pendding",
+      // },
     ]);
 
     const handleClickTab = () => {};
@@ -168,8 +168,9 @@ export default {
         .setData({ id: userId.value })
         .setOnResponse((rawData) => {
           const data = new ResponseHelper(rawData);
-          list.value = data.data;
-          store.commit("changeBookedList", data.data);
+          list.value = data.data.data;
+          console.log(list.value);
+          store.commit("changeBookedList", data.data.data);
         })
         .setOnFinally(() => {
           loadBookedList.value = false;

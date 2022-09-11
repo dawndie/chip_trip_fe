@@ -2,17 +2,23 @@
   <div class="card book-room-card">
     <div class="book-room-card--price">
       <h1 class="d-inline mr-1">
-        {{ defaultPrice.normalDayPrice }}
-        {{ $t("shared.currency." + currency) }}
+        {{
+          new Intl.NumberFormat("de-DE", {
+            style: "currency",
+            currency: "VND",
+          }).format(defaultPrice.normalDayPrice)
+        }}
       </h1>
       <p class="d-inline">/1 {{ $t("shared.night") }}</p>
     </div>
 
     <el-date-picker
+      style="width: 360px"
       v-model="dateRangeSearch"
       type="daterange"
       :start-placeholder="$t('shared.navbar.from_date')"
       :end-placeholder="$t('shared.navbar.to_date')"
+      :disabled-date="disableDate"
       format="DD-MM-YYYY"
       value-format="YYYY-MM-DD"
       class="searchbar--datepicker mt-2 mb-2"
@@ -118,6 +124,8 @@ export default {
   components: { GuestPicker },
 
   setup(props, context) {
+    const firstSelectedDayRef = ref(null);
+    const onWeek = 1000 * 60 * 60 * 24 * 7;
     let dateRangeSearch = ref([]);
     let guestSearch = ref({});
 
@@ -180,6 +188,17 @@ export default {
     const store = useStore();
 
     let isLoggedIn = computed(() => store.getters.isLoggedIn);
+
+    function disableDate(time) {
+      const firstSelectedDay = firstSelectedDayRef.value;
+      if (firstSelectedDay) {
+        return (
+          time.getTime() < firstSelectedDay.getTime() - onWeek ||
+          time.getTime() > firstSelectedDay.getTime() + onWeek
+        );
+      }
+      return false;
+    }
 
     function bookRoom() {
       if (!isLoggedIn.value) {

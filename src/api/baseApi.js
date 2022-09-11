@@ -1,5 +1,7 @@
 export const BASE_URL = "http://localhost:4000/";
-
+export const MOMO_TEST =
+  "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+export const MOMO_TEST_2 = "https://test-payment.momo.vn/v2/gateway/api/create";
 export const MOMO_URL = "https://test-payment.momo.vn/v2/gateway/api";
 export const MOMO_CREATE = MOMO_URL + "/create";
 
@@ -27,7 +29,9 @@ export const COUPON = "/coupon";
 export const POST_APPLY_COUPON = COUPON + "/apply";
 
 export const RECOMMENDER = "/recommender";
-export const GET_RECOMMEND_BY_CITY = RECOMMENDER + "/city";
+export const GET_RECOMMEND_BY_ID = RECOMMENDER + "/id";
 
 export const GET_SEARCH_BY_NAME_OR_ADD = PLACE + "/search";
 export const GET_FILTER = PLACE + "/filter";
+export const SUGGEST = "/suggestions";
+export const SUGGEST_PLACE = PLACE + SUGGEST;

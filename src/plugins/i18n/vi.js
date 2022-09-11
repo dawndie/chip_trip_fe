@@ -31,13 +31,13 @@ export default {
       homestay: "Homestay",
       motel: "Motel",
       villa: "Villa",
-      penhouse: "Penhouse",
+      penthouse: "Penthouse",
     },
     currency: {
       VND: "đ",
-      USD: "đô",
+      USD: "$",
       vnd: "đ",
-      usd: "đô",
+      usd: "$",
     },
 
     navbar: {

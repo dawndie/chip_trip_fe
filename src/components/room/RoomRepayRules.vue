@@ -68,23 +68,23 @@ export default {
     const tableData = computed(() => [
       {
         date: i18n.global.t("pages.room.rules.special_rules"),
-        time: "rere",
+        time: "Không được sử dụng ma túy ở trong phòng",
       },
       {
         date: i18n.global.t("pages.room.rules.smoking"),
-        time: i18n.global.t(`shared.home`),
+        time: "Không",
       },
       {
         date: i18n.global.t("pages.room.rules.pet"),
-        time: i18n.global.t(`shared.home`),
+        time: "Không",
       },
       {
         date: i18n.global.t("pages.room.rules.cooking"),
-        time: i18n.global.t(`shared.home`),
+        time: "Được phép nấu nướng trước 22h",
       },
       {
         date: i18n.global.t("pages.room.rules.party"),
-        time: i18n.global.t(`shared.home`),
+        time: "Không được làm ồn sau 22h",
       },
     ]);
 

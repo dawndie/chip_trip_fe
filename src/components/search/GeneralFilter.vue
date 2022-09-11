@@ -56,7 +56,7 @@
         {{ $t("shared.cancel") }}
       </button>
       <button class="text-btn text-btn--highlight" @click="done">
-        {{ $t("shared.done") }}
+        Chấp nhận
       </button>
     </div>
   </el-popover>
